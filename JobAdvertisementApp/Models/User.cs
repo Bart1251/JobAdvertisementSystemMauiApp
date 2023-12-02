@@ -1,4 +1,4 @@
-﻿namespace JobAdvertisementAppAPI.Models
+﻿namespace JobAdvertisementApp.Models
 {
     public class User
     {

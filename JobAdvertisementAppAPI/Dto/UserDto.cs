@@ -1,6 +1,6 @@
-﻿namespace JobAdvertisementAppAPI.Models
+﻿namespace JobAdvertisementAppAPI.Dto
 {
-    public class User
+    public class UserDto
     {
         public int Id { get; set; }
         public string? FirstName { get; set; }
@@ -12,12 +12,5 @@
         public string? Occupation { get; set; }
         public string? CareerSummary { get; set; }
         public string? Skills { get; set; }
-
-
-        public ICollection<JobExperience>? JobExperiences { get; set; }
-        public ICollection<Education>? Education { get; set; }
-        public ICollection<Profile>? Profiles { get; set; }
-        public ICollection<Course>? Courses { get; set; }
-        public ICollection<UserLanguage>? UserLanguages { get; set; }
     }
 }

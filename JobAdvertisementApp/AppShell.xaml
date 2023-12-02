@@ -3,12 +3,12 @@
     x:Class="JobAdvertisementApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:JobAdvertisementApp"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:pages="clr-namespace:JobAdvertisementApp.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Job Navigator">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate pages:MainPage}"
         Route="MainPage" />
 
 </Shell>

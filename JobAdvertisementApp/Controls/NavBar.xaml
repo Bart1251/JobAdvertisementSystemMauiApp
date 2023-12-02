@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JobAdvertisementApp.Controls.NavBar">
+
+    <Grid Padding="10" BackgroundColor="#FFFFFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0" TextColor="#222222" VerticalTextAlignment="Center" FontSize="Medium" Text="Job Navigator" FontAttributes="Bold"/>
+        <StackLayout Grid.Column="1">
+            <Button Text="Oferty pracy" TextColor="#222222" FontSize="Small" BorderWidth="0"/>
+        </StackLayout>
+
+        <StackLayout Grid.Column="3">
+            <Button Text="Zaloguj się" TextColor="#222222" FontSize="Small" BorderColor="#222222" Clicked="LoginNavigate"/>
+        </StackLayout>
+    </Grid>
+</ContentView>
