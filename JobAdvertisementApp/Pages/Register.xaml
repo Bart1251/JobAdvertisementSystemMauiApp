@@ -32,9 +32,9 @@
             <Entry Grid.Row="6" Placeholder="Numer telefonu" x:Name="PhoneNumber" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
             <Entry Grid.Row="7" Placeholder="Email" x:Name="Email" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
             <Entry Grid.Row="8" Placeholder="Hasło" x:Name="Password" IsPassword="True" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
-            <Entry Grid.Row="9" Placeholder="Powtórz hasło" x:Name="Pasword2" IsPassword="True" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+            <Entry Grid.Row="9" Placeholder="Powtórz hasło" x:Name="Password2" IsPassword="True" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
             
-            <Button Grid.Row="10" Text="Zarejestruj się" TextColor="#222222" FontSize="Small" BorderColor="#222222" Margin="10"/>
+            <Button Grid.Row="10" Text="Zarejestruj się" TextColor="#222222" FontSize="Small" BorderColor="#222222" Margin="10" Clicked="RegisterClick"/>
         </Grid>
     </ScrollView>
 </ContentPage>

@@ -40,9 +40,9 @@ namespace JobAdvertisementAppAPI.Controllers
             if (user == null)
                 return BadRequest(ModelState);
 
-            var users = userRepository.GetUsers().Where(e => e.Email == user.Email);
+            List<User> users = userRepository.GetUsers().Where(e => e.Email == user.Email).ToList();
 
-            if(users == null)
+            if(users.Count > 0)
             {
                 ModelState.AddModelError("", "User already exists");
                 return StatusCode(422, ModelState);

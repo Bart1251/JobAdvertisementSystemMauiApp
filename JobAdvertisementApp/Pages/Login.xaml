@@ -22,7 +22,7 @@
             <Label Grid.Row="1" Text="Zaloguj się" FontSize="Medium" TextColor="#222222" Margin="10" HorizontalOptions="Center"/>
             <Entry Grid.Row="2" Placeholder="Email" x:Name="Email" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
             <Entry Grid.Row="3" Placeholder="Hasło" x:Name="Password" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
-            <Button Grid.Row="4" Text="Zaloguj się" TextColor="#222222" FontSize="Small" BorderColor="#222222" Margin="10"/>
+            <Button Grid.Row="4" Text="Zaloguj się" TextColor="#222222" FontSize="Small" BorderColor="#222222" Margin="10" Clicked="LoginClick"/>
             <Label Grid.Row="5" Text="Nie masz jeszcze konta" TextColor="#222222" HorizontalOptions="Center"/>
             <Button Grid.Row="6" Text="Zarejestruj się" TextColor="#222222" FontSize="Small" BorderColor="#222222" Margin="10" Clicked="RegisterNavigate"/>
         </Grid>
