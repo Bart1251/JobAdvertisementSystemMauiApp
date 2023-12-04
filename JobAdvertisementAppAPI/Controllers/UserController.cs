@@ -20,7 +20,7 @@ namespace JobAdvertisementAppAPI.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(User))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<UserDto>))]
         [ProducesResponseType(400)]
         public IActionResult GetUsers()
         {
