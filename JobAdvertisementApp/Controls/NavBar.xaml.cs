@@ -30,7 +30,12 @@ public partial class NavBar : ContentView
 		}
 		else
 		{
-			//TODO doaæ przekierowanie do profilu
+			await Shell.Current.GoToAsync("//Profile");
 		}
+	}
+
+	private async void MainNavigate(object sender, EventArgs e)
+	{
+		await Shell.Current.GoToAsync("//MainPage");
 	}
 }

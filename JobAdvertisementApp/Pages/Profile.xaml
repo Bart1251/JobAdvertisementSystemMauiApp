@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JobAdvertisementApp.Pages.Profile"
+             xmlns:local="clr-namespace:JobAdvertisementApp.Controls"
+             Title="Profile"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#EEEEEE">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <local:NavBar x:Name="NavBar" Grid.Row="0"/>
+        <ScrollView Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0" BackgroundColor="CadetBlue" Padding="10" RowSpacing="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Frame Grid.Row="0" CornerRadius="100" WidthRequest="200" HeightRequest="200" BackgroundColor="White" BorderColor="Transparent" Padding="0">
+                        <Image Source="baner.png" Aspect="Fill"/>
+                    </Frame>
+                    <VerticalStackLayout Grid.Row="1">
+                        <Label Text="Bartłomiej Więcek" FontSize="Medium" TextColor="#222222" HorizontalOptions="Center" FontAttributes="Bold"/>
+                        <Label Text="Programista Back-End" TextColor="#222222" HorizontalOptions="Center" FontAttributes="Italic"/>
+                    </VerticalStackLayout>
+ 
+                    <Grid Grid.Row="2" RowSpacing="10" Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Label Grid.Row="0" Grid.Column="0" Text="Data urodzenia" FontAttributes="Bold" TextColor="#222222" LineBreakMode="CharacterWrap"/>
+                        <Label Grid.Row="0" Grid.Column="1"  Text="12.01.2005" TextColor="#222222" LineBreakMode="CharacterWrap"/>
+                        <Line Grid.Row="1" BackgroundColor="#222222" Grid.ColumnSpan="2"/>
+                        <Label Grid.Row="2" Grid.Column="0"  Text="Miejsce zamieszkania" FontAttributes="Bold" TextColor="#222222" LineBreakMode="CharacterWrap"/>
+                        <Label Grid.Row="2" Grid.Column="1"  Text="Stara Wieś 248" TextColor="#222222" LineBreakMode="CharacterWrap"/>
+                        <Line Grid.Row="3" BackgroundColor="#222222" Grid.ColumnSpan="2"/>
+                        <Label Grid.Row="4" Grid.Column="0"  Text="Telefon" FontAttributes="Bold" TextColor="#222222" LineBreakMode="CharacterWrap"/>
+                        <Label Grid.Row="4" Grid.Column="1"  Text="123 456 789" TextColor="#222222" LineBreakMode="CharacterWrap"/>
+                        <Line Grid.Row="5" BackgroundColor="#222222" Grid.ColumnSpan="2"/>
+                        <Label Grid.Row="6" Grid.Column="0"  Text="Email" FontAttributes="Bold" TextColor="#222222" LineBreakMode="CharacterWrap"/>
+                        <Label Grid.Row="6" Grid.Column="1"  Text="example@gmail.com" TextColor="#222222" LineBreakMode="CharacterWrap"/>
+                        <Line Grid.Row="7" BackgroundColor="#222222" Grid.ColumnSpan="2"/> 
+                    </Grid>
+                    
+                    
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

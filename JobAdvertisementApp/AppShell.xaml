@@ -18,6 +18,8 @@
     <ShellContent
         ContentTemplate="{DataTemplate pages:Register}"
         Route="Register" />
-
+    <ShellContent
+        ContentTemplate="{DataTemplate pages:Profile}"
+        Route="Profile" />
 
 </Shell>

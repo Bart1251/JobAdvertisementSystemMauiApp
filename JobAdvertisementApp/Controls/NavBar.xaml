@@ -11,7 +11,7 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" TextColor="#222222" VerticalTextAlignment="Center" FontSize="Medium" Text="Job Navigator" FontAttributes="Bold"/>
+        <Button Grid.Column="0" TextColor="#222222" FontSize="Medium" Text="Job Navigator" FontAttributes="Bold" BorderWidth="0" Clicked="MainNavigate"/>
         <StackLayout Grid.Column="1">
             <Button Text="Oferty pracy" TextColor="#222222" FontSize="Small" BorderWidth="0"/>
         </StackLayout>
