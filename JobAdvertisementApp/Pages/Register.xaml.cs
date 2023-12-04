@@ -20,14 +20,19 @@ public partial class Register : ContentPage
 	{
 		if(await Validate())
 		{
-			if (await userApiService.AddAsync(new User() {
+			User user = new User()
+			{
 				FirstName = FirstName.Text,
 				SecondName = SecondName.Text,
 				DateOfBirth = DateOfBirth.Date,
 				PhoneNumber = PhoneNumber.Text,
 				Email = Email.Text,
-				Password = passwordHasher.HashPassword(Password.Text, passwordHasher.GenerateSalt())}))
+				Password = passwordHasher.HashPassword(Password.Text)
+			};
+
+            if (await userApiService.AddAsync(user))
 			{
+				App.LoggedUser = user;
 				await Shell.Current.GoToAsync("//MainPage");
 			}
 			else

@@ -17,11 +17,6 @@ namespace JobAdvertisementAppAPI.Repositories
             return context.User.Where(e => e.Email == email).FirstOrDefault();
         }
 
-        public bool UserExists(string email)
-        {
-            return context.User.Any(e => e.Email == email);
-        }
-
         public bool CreateUser(User user)
         {
             context.Add(user);

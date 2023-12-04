@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:JobAdvertisementApp.Controls"
              x:Class="JobAdvertisementApp.Pages.MainPage"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             SizeChanged="PageSizeChanged">
     
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IsVisible="False"/>
@@ -14,9 +15,9 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <controls:NavBar Grid.Row="0"/>
+        <controls:NavBar x:Name="NavBar" Grid.Row="0"/>
         <ScrollView Grid.Row="1" BackgroundColor="#EEEEEE">
-            <Image Source="baner.png"/>
+            <Image x:Name="Banner" Source="baner.png"/>
         </ScrollView>
     </Grid>
 

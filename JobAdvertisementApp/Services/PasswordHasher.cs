@@ -1,27 +1,32 @@
 ﻿using System.Security.Cryptography;
-using System.Text;
 
 namespace JobAdvertisementApp.Services
 {
     public class PasswordHasher
     {
-        public string HashPassword(string password, string salt)
+        public string HashPassword(string password)
         {
-            using (var sha256 = SHA256.Create())
-            {
-                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password + salt));
-                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-            }
+            byte[] salt;
+            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000);
+            byte[] hash = pbkdf2.GetBytes(20);
+            byte[] hashBytes = new byte[36];
+            Array.Copy(salt, 0, hashBytes, 0, 16);
+            Array.Copy(hash, 0, hashBytes, 16, 20);
+            return Convert.ToBase64String(hashBytes);
         }
 
-        public string GenerateSalt()
+        public bool CheckPassword(string passwordhash, string password)
         {
-            byte[] saltBytes = new byte[16];
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                rng.GetBytes(saltBytes);
-            }
-            return BitConverter.ToString(saltBytes).Replace("-", "").ToLower();
+            byte[] hashBytes = Convert.FromBase64String(passwordhash);
+            byte[] salt = new byte[16];
+            Array.Copy(hashBytes, 0, salt, 0, 16);
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000);
+            byte[] hash = pbkdf2.GetBytes(20);
+            for (int i = 0; i < 20; i++)
+                if (hashBytes[i + 16] != hash[i])
+                    return false;
+            return true;
         }
     }
 }

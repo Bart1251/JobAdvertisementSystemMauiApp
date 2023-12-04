@@ -9,10 +9,10 @@ namespace JobAdvertisementApp.Services
 {
     public abstract class ApiServiceBase<T> : IApiService<T>
     {
-        private readonly HttpClient httpClient;
-        private readonly string baseAddress;
-        private readonly string url;
-        private readonly JsonSerializerOptions jsonSerialzierOptions;
+        protected readonly HttpClient httpClient;
+        protected readonly string baseAddress;
+        protected readonly string url;
+        protected readonly JsonSerializerOptions jsonSerialzierOptions;
 
         public ApiServiceBase(HttpClient httpClient, string url)
         {

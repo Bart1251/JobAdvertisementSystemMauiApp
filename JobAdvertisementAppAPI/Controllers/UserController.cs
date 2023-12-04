@@ -32,6 +32,22 @@ namespace JobAdvertisementAppAPI.Controllers
             return Ok(users);
         }
 
+        [HttpGet("{email}")]
+        [ProducesResponseType(200, Type = typeof(UserDto))]
+        [ProducesResponseType(400)]
+        public IActionResult GetUser(string email)
+        {
+            var user = mapper.Map<UserDto>(userRepository.GetUser(email));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (user == null)
+                return NotFound();
+
+            return Ok(user);
+        }
+
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

@@ -6,8 +6,6 @@ namespace JobAdvertisementAppAPI.Interfaces
     {
         IEnumerable<User> GetUsers();
         User? GetUser(string email);
-        bool UserExists(string email);
-
         bool CreateUser(User user);
         bool Save();
     }
