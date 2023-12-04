@@ -9,9 +9,6 @@
         public string? FieldOfStudy { get; set; }
         public DateTime PeriodOfEducationStart { get; set; }
         public DateTime PeriodOfEducationEnd { get; set; }
-
-
-        public User? User { get; set; }
     }
 
     public enum EducationLevel

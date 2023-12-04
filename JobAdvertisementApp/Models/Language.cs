@@ -5,9 +5,6 @@
         public int Id { get; set; }
         public string? Name { get; set; }
         public LanguageLevel Level { get; set; }
-        
-
-        public ICollection<UserLanguage>? UserLanguages { get; set; }
     }
 
     public enum LanguageLevel

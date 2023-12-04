@@ -7,8 +7,5 @@
         public string? Organizer { get; set; }
         public DateTime CourseStart { get; set; }
         public DateTime CourseEnd { get; set; }
-
-
-        public User? User { get; set; }
     }
 }

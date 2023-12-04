@@ -9,8 +9,5 @@
         public DateTime PeriodOfEmploymentStart { get; set; }
         public DateTime PeriodOdEmploymentEnd { get; set; }
         public string? Responsibilities { get; set; }
-
-
-        public User? User { get; set; }
     }
 }
