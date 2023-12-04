@@ -6,35 +6,46 @@
              Shell.NavBarIsVisible="False"
              BackgroundColor="#EEEEEE">
 
-    <ScrollView>
-        <Grid HorizontalOptions="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"/>
+    </Shell.BackButtonBehavior>
 
-            <Label Grid.Row="1" Text="Zarejestruj się" FontSize="Medium" TextColor="#222222" Margin="10" HorizontalOptions="Center"/>
-            
-            <Entry Grid.Row="2" Placeholder="Imię" x:Name="FirstName" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
-            <Entry Grid.Row="3" Placeholder="Nazwisko" x:Name="SecondName" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
-            <Label Grid.Row="4" Text="Data urodzenia" TextColor="#222222" Margin="10, 0"/>
-            <DatePicker Grid.Row="5" x:Name="DateOfBirth" FontSize="Medium" Margin="10, 0, 10, 10" WidthRequest="300" HeightRequest="45" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
-            <Entry Grid.Row="6" Placeholder="Numer telefonu" x:Name="PhoneNumber" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
-            <Entry Grid.Row="7" Placeholder="Email" x:Name="Email" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
-            <Entry Grid.Row="8" Placeholder="Hasło" x:Name="Password" IsPassword="True" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
-            <Entry Grid.Row="9" Placeholder="Powtórz hasło" x:Name="Password2" IsPassword="True" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
-            
-            <Button Grid.Row="10" Text="Zarejestruj się" TextColor="#222222" FontSize="Small" BorderColor="#222222" Margin="10" Clicked="RegisterClick"/>
-        </Grid>
-    </ScrollView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Text="🡠" TextColor="#222222" FontSize="Small" BorderColor="#222222" Clicked="GoBack" HorizontalOptions="Start"/>
+        <ScrollView Grid.Row="1">
+            <Grid HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="1" Text="Zarejestruj się" FontSize="Medium" TextColor="#222222" Margin="10" HorizontalOptions="Center"/>
+
+                <Entry Grid.Row="2" Placeholder="Imię" x:Name="FirstName" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Entry Grid.Row="3" Placeholder="Nazwisko" x:Name="SecondName" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Label Grid.Row="4" Text="Data urodzenia" TextColor="#222222" Margin="10, 0"/>
+                <DatePicker Grid.Row="5" x:Name="DateOfBirth" FontSize="Medium" Margin="10, 0, 10, 10" WidthRequest="300" HeightRequest="45" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Entry Grid.Row="6" Placeholder="Numer telefonu" x:Name="PhoneNumber" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Entry Grid.Row="7" Placeholder="Email" x:Name="Email" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Entry Grid.Row="8" Placeholder="Hasło" x:Name="Password" IsPassword="True" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Entry Grid.Row="9" Placeholder="Powtórz hasło" x:Name="Password2" IsPassword="True" FontSize="Medium" Margin="10" WidthRequest="300" HorizontalOptions="Center" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+
+                <Button Grid.Row="10" Text="Zarejestruj się" TextColor="#222222" FontSize="Small" BorderColor="#222222" Margin="10" Clicked="RegisterClick"/>
+            </Grid>
+        </ScrollView>
+    </Grid>
 </ContentPage>

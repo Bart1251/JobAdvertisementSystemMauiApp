@@ -14,11 +14,16 @@ public partial class Login : ContentPage
 
     private async void RegisterNavigate(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("Register");
+        await Shell.Current.GoToAsync("//Register");
     }
 
     private void LoginClick(object sender, EventArgs e)
     {
         
+    }
+
+    private async void GoBack(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//MainPage");
     }
 }

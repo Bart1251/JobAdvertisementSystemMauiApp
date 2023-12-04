@@ -11,6 +11,6 @@ public partial class NavBar : ContentView
 
 	private async void LoginNavigate(object sender, EventArgs e)
 	{
-		await Shell.Current.GoToAsync("Login");
+		await Shell.Current.GoToAsync("//Login");
 	}
 }
