@@ -17,7 +17,7 @@
         </StackLayout>
 
         <StackLayout Grid.Column="3">
-            <Button x:Name="UserButton" TextColor="#222222" FontSize="Small" BorderColor="#222222"/>
+            <Button x:Name="UserButton" TextColor="#222222" FontSize="Small" BorderColor="#222222" Clicked="UserButtonNavigate"/>
         </StackLayout>
     </Grid>
 </ContentView>

@@ -15,25 +15,22 @@ public partial class NavBar : ContentView
         if (App.LoggedUser == null)
         {
             UserButton.Text = "Zaloguj siê";
-            UserButton.Clicked -= ProfileNavigate;
-            UserButton.Clicked += LoginNavigate;
         }
         else
         {
             UserButton.Text = "Mój profil";
-            UserButton.Clicked -= LoginNavigate;
-            UserButton.Clicked += ProfileNavigate;
         }
     }
 
-	private async void LoginNavigate(object sender, EventArgs e)
+	private async void UserButtonNavigate(object sender, EventArgs e)
 	{
-		await Shell.Current.GoToAsync("//Login");
+		if(App.LoggedUser == null)
+		{
+			await Shell.Current.GoToAsync("//Login");
+		}
+		else
+		{
+			//TODO doaæ przekierowanie do profilu
+		}
 	}
-
-    private async void ProfileNavigate(object sender, EventArgs e)
-    {
-        //TODO przekierowanie na profil
-        throw new NotImplementedException();
-    }
 }
