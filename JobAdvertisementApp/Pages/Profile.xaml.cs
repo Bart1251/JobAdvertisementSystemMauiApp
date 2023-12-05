@@ -1,18 +1,22 @@
+using JobAdvertisementApp.Services;
 using System.Collections.ObjectModel;
 
 namespace JobAdvertisementApp.Pages;
 
 public partial class Profile : ContentPage
 {
+	private readonly UserApiService userApiService;
+
 	private ObservableCollection<Models.Profile> profiles = new ObservableCollection<Models.Profile>();
 
-	public Profile()
+	public Profile(UserApiService userApiService)
 	{
 		InitializeComponent();
 		Links.ItemsSource = profiles;
 		PersonalInfo1.BindingContext = App.LoggedUser;
 		PersonalInfo2.BindingContext = App.LoggedUser;
-    }
+		this.userApiService = userApiService;
+	}
 
 	private async void GoBack(object sender, EventArgs e)
 	{
@@ -24,6 +28,11 @@ public partial class Profile : ContentPage
 		base.OnAppearing();
 		NavBar.OnAppearing();
     }
+
+	private async void Save()
+	{
+		await userApiService.UpdateAsync(App.LoggedUser.Id.ToString(), App.LoggedUser);
+	}
 
 	private async void UpdateDateOfBirth(object sender, EventArgs e)
 	{
@@ -42,6 +51,7 @@ public partial class Profile : ContentPage
 		{
 			await DisplayAlert("Wyst¹pi³ problem", "Nieprawid³owe dane", "OK");
 		}
+		Save();
 	}
 
     private async void UpdateAdress(object sender, EventArgs e)
@@ -51,6 +61,7 @@ public partial class Profile : ContentPage
 			return;
 		((Label)sender).Text = result;
 		App.LoggedUser.Adress = result;
+        Save();
     }
 
     private async void UpdatePhoneNumber(object sender, EventArgs e)
@@ -60,6 +71,7 @@ public partial class Profile : ContentPage
             return;
         ((Label)sender).Text = result;
         App.LoggedUser.PhoneNumber = result;
+        Save();
     }
 
     private async void UpdateEmail(object sender, EventArgs e)
@@ -69,6 +81,7 @@ public partial class Profile : ContentPage
             return;
         ((Label)sender).Text = result;
         App.LoggedUser.Email = result;
+        Save();
     }
 
 	private async void AddLink(object sender, EventArgs e)

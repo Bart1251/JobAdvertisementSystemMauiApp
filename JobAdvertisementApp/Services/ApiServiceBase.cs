@@ -26,10 +26,19 @@ namespace JobAdvertisementApp.Services
             };
         }
 
-        public virtual Task<T> GetAsync(string id)
+        public async virtual Task<T> GetAsync(string id)
         {
-            // Implementacja dla pobierania pojedynczego obiektu
-            throw new NotImplementedException();
+            T result = default(T);
+
+            HttpResponseMessage response = await httpClient.GetAsync(url + "/" + id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                result = JsonSerializer.Deserialize<T>(content, jsonSerialzierOptions);
+            }
+
+            return result;
         }
 
         public virtual async Task<IEnumerable<T>> GetAllAsync()
@@ -57,16 +66,22 @@ namespace JobAdvertisementApp.Services
             return false;
         }
 
-        public virtual Task<bool> UpdateAsync(string id, T item)
+        public virtual async Task<bool> UpdateAsync(string id, T item)
         {
-            // Implementacja dla aktualizacji obiektu
-            throw new NotImplementedException();
+            StringContent content = new StringContent(JsonSerializer.Serialize<T>(item, jsonSerialzierOptions), Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PutAsync(url + "/" + id, content);
+
+            if (response.IsSuccessStatusCode) return true;
+            return false;
         }
 
-        public virtual Task<bool> DeleteAsync(string id)
+        public virtual async Task<bool> DeleteAsync(string id)
         {
-            // Implementacja dla usuwania obiektu
-            throw new NotImplementedException();
+            HttpResponseMessage response = await httpClient.DeleteAsync(url + "/" + id);
+
+            if (response.IsSuccessStatusCode) return true;
+            return false;
         }
     }
 }
