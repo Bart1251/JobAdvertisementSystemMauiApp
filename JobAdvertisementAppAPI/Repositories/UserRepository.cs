@@ -33,5 +33,11 @@ namespace JobAdvertisementAppAPI.Repositories
         {
             return context.User.ToList();
         }
+
+        public bool UpdateUser(User user)
+        {
+            context.Update(user);
+            return Save();
+        }
     }
 }
