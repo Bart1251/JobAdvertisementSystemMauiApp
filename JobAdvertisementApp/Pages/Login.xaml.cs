@@ -23,7 +23,7 @@ public partial class Login : ContentPage
 
     private async void LoginClick(object sender, EventArgs e)
     {
-        if(string.IsNullOrEmpty(Email.Text))
+        if(string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(Password.Text))
         {
             await DisplayAlert("Wyst¹pi³ problem", "Dane logowania s¹ nieprawid³owe", "OK");
             return;

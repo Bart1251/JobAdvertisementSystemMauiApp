@@ -17,7 +17,10 @@
         </Grid.RowDefinitions>
         <controls:NavBar x:Name="NavBar" Grid.Row="0"/>
         <ScrollView Grid.Row="1" BackgroundColor="#EEEEEE">
-            <Image x:Name="Banner" Source="baner.png"/>
+            <VerticalStackLayout>
+                <Image x:Name="Banner" Source="baner.png"/>
+                
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 
