@@ -37,12 +37,19 @@
                     <Frame Grid.Row="0" CornerRadius="100" WidthRequest="200" HeightRequest="200" BackgroundColor="White" BorderColor="Transparent" Padding="0">
                         <Image Source="baner.png" Aspect="Fill"/>
                     </Frame>
-                    <VerticalStackLayout Grid.Row="1">
-                        <Label Text="Bartłomiej Więcek" FontSize="Medium" TextColor="#222222" HorizontalOptions="Center" FontAttributes="Bold"/>
-                        <Label Text="Programista Back-End" TextColor="#222222" HorizontalOptions="Center" FontAttributes="Italic"/>
+                    <VerticalStackLayout Grid.Row="1" x:Name="PersonalInfo1">
+                        <Label FontSize="Medium" TextColor="#222222" HorizontalOptions="Center" FontAttributes="Bold">
+                            <Label.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="FirstName"/>
+                                    <Binding Path="SecondName"/>
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                        <Label Text="{Binding Occupation}" TextColor="#222222" HorizontalOptions="Center" FontAttributes="Italic"/>
                     </VerticalStackLayout>
  
-                    <Grid Grid.Row="2" RowSpacing="10" Margin="10">
+                    <Grid Grid.Row="2" RowSpacing="10" Margin="10" x:Name="PersonalInfo2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -57,20 +64,56 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        
+
                         <Label Grid.Row="0" Grid.Column="0" Text="Data urodzenia" FontAttributes="Bold" TextColor="#222222" LineBreakMode="CharacterWrap"/>
-                        <Label Grid.Row="0" Grid.Column="1"  Text="12.01.2005" TextColor="#222222" LineBreakMode="CharacterWrap"/>
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding DateOfBirth, StringFormat='{0:dd-MM-yyyy}'}" TextColor="#222222" LineBreakMode="CharacterWrap">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="UpdateDateOfBirth"/>
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Line Grid.Row="1" BackgroundColor="#222222" Grid.ColumnSpan="2"/>
                         <Label Grid.Row="2" Grid.Column="0"  Text="Miejsce zamieszkania" FontAttributes="Bold" TextColor="#222222" LineBreakMode="CharacterWrap"/>
-                        <Label Grid.Row="2" Grid.Column="1"  Text="Stara Wieś 248" TextColor="#222222" LineBreakMode="CharacterWrap"/>
+                        <Label Grid.Row="2" Grid.Column="1"  Text="{Binding Adress}" TextColor="#222222" LineBreakMode="CharacterWrap">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="UpdateAdress"/>
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Line Grid.Row="3" BackgroundColor="#222222" Grid.ColumnSpan="2"/>
                         <Label Grid.Row="4" Grid.Column="0"  Text="Telefon" FontAttributes="Bold" TextColor="#222222" LineBreakMode="CharacterWrap"/>
-                        <Label Grid.Row="4" Grid.Column="1"  Text="123 456 789" TextColor="#222222" LineBreakMode="CharacterWrap"/>
+                        <Label Grid.Row="4" Grid.Column="1"  Text="{Binding PhoneNumber}" TextColor="#222222" LineBreakMode="CharacterWrap">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="UpdatePhoneNumber"/>
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Line Grid.Row="5" BackgroundColor="#222222" Grid.ColumnSpan="2"/>
                         <Label Grid.Row="6" Grid.Column="0"  Text="Email" FontAttributes="Bold" TextColor="#222222" LineBreakMode="CharacterWrap"/>
-                        <Label Grid.Row="6" Grid.Column="1"  Text="example@gmail.com" TextColor="#222222" LineBreakMode="CharacterWrap"/>
+                        <Label Grid.Row="6" Grid.Column="1"  Text="{Binding Email}" TextColor="#222222" LineBreakMode="CharacterWrap">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="UpdateEmail"/>
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Line Grid.Row="7" BackgroundColor="#222222" Grid.ColumnSpan="2"/> 
                     </Grid>
+
+                    <VerticalStackLayout Grid.Row="3" Margin="10">
+                        <HorizontalStackLayout>
+                            <Label Text="Moje profile" TextColor="#222222" FontAttributes="Bold" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
+                            <Button Text="+" TextColor="#EEEEEE" BackgroundColor="#222222" WidthRequest="25" HeightRequest="25" Padding="5" VerticalOptions="Center" Clicked="AddLink"/>
+                        </HorizontalStackLayout>
+                        <ListView x:Name="Links" SelectionMode="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Label Text="{Binding Link}" TextColor="#222222">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="2" CommandParameter="{Binding .}" Tapped="DeleteLink"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </VerticalStackLayout>
                     
                     
                 </Grid>

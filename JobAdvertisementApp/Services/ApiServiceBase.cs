@@ -17,7 +17,7 @@ namespace JobAdvertisementApp.Services
         public ApiServiceBase(HttpClient httpClient, string url)
         {
             this.httpClient = httpClient;
-            baseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "http://localhost:5141" : "https://localhost:7141";
+            baseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5141" : "https://localhost:7141";
             this.url = baseAddress + "/" + url;
 
             jsonSerialzierOptions = new JsonSerializerOptions
