@@ -19,7 +19,8 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<HttpClient>();
 		builder.Services.AddSingleton<UserApiService>();
-		builder.Services.AddSingleton<PasswordHasher>();
+		builder.Services.AddSingleton<ProfileApiService>();
+        builder.Services.AddSingleton<PasswordHasher>();
 
 		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<Login>();
