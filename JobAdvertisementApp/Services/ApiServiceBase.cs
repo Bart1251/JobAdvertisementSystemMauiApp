@@ -56,6 +56,21 @@ namespace JobAdvertisementApp.Services
             return result;
         }
 
+        public virtual async Task<IEnumerable<T>> GetAllFromIdAsync(string id)
+        {
+            IEnumerable<T> result = new List<T>();
+
+            HttpResponseMessage response = await httpClient.GetAsync(url + "/" + id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                result = JsonSerializer.Deserialize<List<T>>(content, jsonSerialzierOptions);
+            }
+
+            return result;
+        }
+
         public virtual async Task<bool> AddAsync(T item)
         {
             StringContent content = new StringContent(JsonSerializer.Serialize<T>(item, jsonSerialzierOptions), Encoding.UTF8, "application/json");
@@ -79,6 +94,16 @@ namespace JobAdvertisementApp.Services
         public virtual async Task<bool> DeleteAsync(string id)
         {
             HttpResponseMessage response = await httpClient.DeleteAsync(url + "/" + id);
+
+            if (response.IsSuccessStatusCode) return true;
+            return false;
+        }
+
+        public virtual async Task<bool> AddToIdAsync(string Id, T item)
+        {
+            StringContent content = new StringContent(JsonSerializer.Serialize<T>(item, jsonSerialzierOptions), Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(url + "/" + Id, content);
 
             if (response.IsSuccessStatusCode) return true;
             return false;
