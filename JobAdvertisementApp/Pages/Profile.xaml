@@ -45,8 +45,15 @@
                                     <Binding Path="SecondName"/>
                                 </MultiBinding>
                             </Label.Text>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="UpdateName"/>
+                            </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="{Binding Occupation}" TextColor="#222222" HorizontalOptions="Center" FontAttributes="Italic"/>
+                        <Label Text="{Binding Occupation}" TextColor="#222222" HorizontalOptions="Center" FontAttributes="Italic">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="UpdateOccupation"/>
+                            </Label.GestureRecognizers>
+                        </Label>
                     </VerticalStackLayout>
  
                     <Grid Grid.Row="2" RowSpacing="10" Margin="10" x:Name="PersonalInfo2">
