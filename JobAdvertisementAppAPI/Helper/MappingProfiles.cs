@@ -27,8 +27,8 @@ namespace JobAdvertisementAppAPI.Helper
             CreateMap<LanguageDto, Language>();
             CreateMap<Offer, OfferDto>();
             CreateMap<OfferDto, Offer>();
-            CreateMap<Profile, ProfileDto>();
-            CreateMap<ProfileDto, Profile>();
+            CreateMap<Models.Profile, ProfileDto>();
+            CreateMap<ProfileDto, Models.Profile>();
             CreateMap<TypeOfContract, TypeOfContractDto>();
             CreateMap<TypeOfContractDto, TypeOfContract>();
             CreateMap<User, UserDto>();

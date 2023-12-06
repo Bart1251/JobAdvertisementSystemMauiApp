@@ -19,7 +19,7 @@ namespace JobAdvertisementAppAPI.Repositories
 
         public bool CreateUser(User user)
         {
-            context.Add(user);
+            context.User.Add(user);
 
             return Save();
         }
@@ -36,7 +36,7 @@ namespace JobAdvertisementAppAPI.Repositories
 
         public bool UpdateUser(User user)
         {
-            context.Update(user);
+            context.User.Update(user);
             return Save();
         }
     }
