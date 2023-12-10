@@ -20,6 +20,10 @@ public static class MauiProgram
 		builder.Services.AddSingleton<HttpClient>();
 		builder.Services.AddSingleton<UserApiService>();
 		builder.Services.AddSingleton<ProfileApiService>();
+		builder.Services.AddSingleton<LanguageApiService>();
+		builder.Services.AddSingleton<JobExperienceApiService>();
+		builder.Services.AddSingleton<EducationApiService>();
+		builder.Services.AddSingleton<CourseApiService>();
         builder.Services.AddSingleton<PasswordHasher>();
 
 		builder.Services.AddSingleton<MainPage>();

@@ -5,39 +5,31 @@
              xmlns:local="clr-namespace:JobAdvertisementApp.Controls"
              Title="Profile"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="#EEEEEE">
+             BackgroundColor="#EEEEEE"
+             SizeChanged="PageSizeChanged">
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IsVisible="False" />
     </Shell.BackButtonBehavior>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <local:NavBar x:Name="NavBar" Grid.Row="0"/>
-        <ScrollView Grid.Row="1">
-            <Grid>
+
+    <ScrollView Grid.Row="1" VerticalOptions="FillAndExpand" x:Name="ScrollView">
+        <VerticalStackLayout>
+            <local:NavBar x:Name="NavBar"/>
+            <Grid x:Name="MainGrid">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition x:Name="SecondColumn" Width="2*"/>
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Row="0" Grid.Column="0" BackgroundColor="CadetBlue" Padding="10" RowSpacing="20">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
+                <VerticalStackLayout x:Name="Left" Grid.Row="0" Grid.Column="0" BackgroundColor="CadetBlue" Padding="10" Spacing="20">
                     <Frame Grid.Row="0" CornerRadius="100" WidthRequest="200" HeightRequest="200" BackgroundColor="White" BorderColor="Transparent" Padding="0">
-                        <Image Source="baner.png" Aspect="Fill"/>
+                        <Image Source="default_profile.jpg" Aspect="Fill"/>
                     </Frame>
-                    <VerticalStackLayout Grid.Row="1" x:Name="PersonalInfo1">
+                    <VerticalStackLayout x:Name="PersonalInfo1">
                         <Label FontSize="Medium" TextColor="#222222" HorizontalOptions="Center" FontAttributes="Bold">
                             <Label.Text>
                                 <MultiBinding StringFormat="{}{0} {1}">
@@ -55,8 +47,8 @@
                             </Label.GestureRecognizers>
                         </Label>
                     </VerticalStackLayout>
- 
-                    <Grid Grid.Row="2" RowSpacing="10" Margin="10" x:Name="PersonalInfo2">
+
+                    <Grid RowSpacing="10" Margin="10" x:Name="PersonalInfo2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -73,7 +65,7 @@
                         </Grid.RowDefinitions>
 
                         <Label Grid.Row="0" Grid.Column="0" Text="Data urodzenia" FontAttributes="Bold" TextColor="#222222" LineBreakMode="CharacterWrap"/>
-                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding DateOfBirth, StringFormat='{0:dd-MM-yyyy}'}" TextColor="#222222" LineBreakMode="CharacterWrap">
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding DateOfBirth, StringFormat='{0:d}'}" TextColor="#222222" LineBreakMode="CharacterWrap">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="UpdateDateOfBirth"/>
                             </Label.GestureRecognizers>
@@ -99,33 +91,90 @@
                                 <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="UpdateEmail"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Line Grid.Row="7" BackgroundColor="#222222" Grid.ColumnSpan="2"/> 
+                        <Line Grid.Row="7" BackgroundColor="#222222" Grid.ColumnSpan="2"/>
                     </Grid>
 
-                    <VerticalStackLayout Grid.Row="3" Margin="10">
+                    <VerticalStackLayout Margin="10">
                         <HorizontalStackLayout>
                             <Label Text="Moje profile" TextColor="#222222" FontAttributes="Bold" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
                             <Button Text="+" TextColor="#EEEEEE" BackgroundColor="#222222" WidthRequest="25" HeightRequest="25" Padding="5" VerticalOptions="Center" Clicked="AddLink"/>
                         </HorizontalStackLayout>
-                        <ListView x:Name="Links" SelectionMode="None">
-                            <ListView.ItemTemplate>
+                        <VerticalStackLayout x:Name="Links">
+                            <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <ViewCell>
-                                        <Label Text="{Binding Link}" TextColor="#222222">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer NumberOfTapsRequired="2" CommandParameter="{Binding .}" Tapped="DeleteLink"/>
-                                            </Label.GestureRecognizers>
-                                        </Label>
-                                    </ViewCell>
+                                    <Label Text="{Binding Link}" TextColor="#222222">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="2" CommandParameter="{Binding .}" Tapped="DeleteLink"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                    
-                    
-                </Grid>
-            </Grid>
-        </ScrollView>
-    </Grid>
 
+                    <VerticalStackLayout Margin="10">
+                        <HorizontalStackLayout>
+                            <Label Text="Znajomość języków" TextColor="#222222" FontAttributes="Bold" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
+                            <Button Text="+" TextColor="#EEEEEE" BackgroundColor="#222222" WidthRequest="25" HeightRequest="25" Padding="5" VerticalOptions="Center" Clicked="AddLanguage"/>
+                        </HorizontalStackLayout>
+                        <VerticalStackLayout x:Name="Languages">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Label TextColor="#222222">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} {1}">
+                                                <Binding Path="Name"/>
+                                                <Binding Path="Level"/>
+                                            </MultiBinding>
+                                        </Label.Text>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="2" CommandParameter="{Binding .}" Tapped="DeleteLanguage"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Margin="10">
+                        <HorizontalStackLayout>
+                            <Label Text="Umiejętności" TextColor="#222222" FontAttributes="Bold" VerticalOptions="Center" Margin="0, 0, 20, 0"/>
+                            <Button Text="+" TextColor="#EEEEEE" BackgroundColor="#222222" WidthRequest="25" HeightRequest="25" Padding="5" VerticalOptions="Center" Clicked="AddSkill"/>
+                        </HorizontalStackLayout>
+                        <VerticalStackLayout x:Name="Skills">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding .}" TextColor="#222222">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="2" CommandParameter="{Binding .}" Tapped="DeleteSkill"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout x:Name="Right" Grid.Row="0" Grid.Column="1" Padding="10" Spacing="20">
+                    <HorizontalStackLayout Spacing="20">
+                        <Label Text="Doświadczenie zawodowe" TextColor="CadetBlue" FontSize="Medium" FontAttributes="Bold"/>
+                        <Button Text="+" TextColor="#EEEEEE" BackgroundColor="CadetBlue" WidthRequest="30" HeightRequest="30" Padding="5" VerticalOptions="Center" Clicked="AddJobExperience"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="JobExperiences"></VerticalStackLayout>
+                    <Line BackgroundColor="LightGray"/>
+                    <HorizontalStackLayout Spacing="20">
+                        <Label Text="Wykształcenie" TextColor="CadetBlue" FontSize="Medium" FontAttributes="Bold"/>
+                        <Button Text="+" TextColor="#EEEEEE" BackgroundColor="CadetBlue" WidthRequest="30" HeightRequest="30" Padding="5" VerticalOptions="Center" Clicked="AddEducation"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Educations"></VerticalStackLayout>
+                    <Line BackgroundColor="LightGray"/>
+                    <HorizontalStackLayout Spacing="20">
+                        <Label Text="Kursy i szkolenia" TextColor="CadetBlue" FontSize="Medium" FontAttributes="Bold"/>
+                        <Button Text="+" TextColor="#EEEEEE" BackgroundColor="CadetBlue" WidthRequest="30" HeightRequest="30" Padding="5" VerticalOptions="Center" Clicked="AddCourse"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Courses"></VerticalStackLayout>
+                </VerticalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
