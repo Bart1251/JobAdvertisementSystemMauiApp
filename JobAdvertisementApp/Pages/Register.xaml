@@ -38,7 +38,7 @@
                 <Entry Grid.Row="2" Placeholder="Imię" x:Name="FirstName" FontSize="Medium" Margin="10" HorizontalOptions="FillAndExpand" TextColor="#CCCCCC" BackgroundColor="#222222"/>
                 <Entry Grid.Row="3" Placeholder="Nazwisko" x:Name="SecondName" FontSize="Medium" Margin="10" HorizontalOptions="FillAndExpand" TextColor="#CCCCCC" BackgroundColor="#222222"/>
                 <Label Grid.Row="4" Text="Data urodzenia" TextColor="#222222" Margin="10, 0"/>
-                <DatePicker Grid.Row="5" x:Name="DateOfBirth" FontSize="Medium" Margin="10, 0, 10, 10" HeightRequest="45" HorizontalOptions="FillAndExpand" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <DatePicker Grid.Row="5" x:Name="DateOfBirth" FontSize="Medium" Margin="10, 0, 10, 10" HeightRequest="45" WidthRequest="280" HorizontalOptions="FillAndExpand" TextColor="#CCCCCC" BackgroundColor="#222222"/>
                 <Entry Grid.Row="6" Placeholder="Numer telefonu" x:Name="PhoneNumber" FontSize="Medium" Margin="10" HorizontalOptions="FillAndExpand" TextColor="#CCCCCC" BackgroundColor="#222222"/>
                 <Entry Grid.Row="7" Placeholder="Email" x:Name="Email" FontSize="Medium" Margin="10" HorizontalOptions="FillAndExpand" TextColor="#CCCCCC" BackgroundColor="#222222"/>
                 <Entry Grid.Row="8" Placeholder="Hasło" x:Name="Password" IsPassword="True" FontSize="Medium" Margin="10" HorizontalOptions="FillAndExpand" TextColor="#CCCCCC" BackgroundColor="#222222"/>

@@ -12,7 +12,7 @@
 
         <VerticalStackLayout Grid.Column="0" BackgroundColor="CadetBlue" VerticalOptions="Start" HorizontalOptions="Center" Padding="5" Margin="5">
             <Label Text="{Binding PeriodOfEmploymentStart, StringFormat='Od: {0:d}'}"/>
-            <Label Text="{Binding PeriodOdEmploymentEnd, StringFormat='Do: {0:d}'}"/>
+            <Label x:Name="PeriodOdEmploymentEnd" Text="{Binding PeriodOdEmploymentEnd, StringFormat='Do: {0:d}'}"/>
         </VerticalStackLayout>
         <Ellipse Grid.Column="1" Fill="CadetBlue" WidthRequest="20" HeightRequest="20" VerticalOptions="Start" Margin="10"/>
         <Line Grid.Column="1" Stroke="CadetBlue" X1="10" X2="10" Y1="0" Y2="100" Aspect="Uniform" StrokeThickness="1" VerticalOptions="Fill"/>

@@ -12,7 +12,7 @@
 
         <Button Grid.Column="0" TextColor="#222222" FontSize="Medium" Text="Job Navigator" FontAttributes="Bold" BorderWidth="0" Clicked="MainNavigate"/>
 
-        <StackLayout Grid.Column="2">
+        <StackLayout Grid.Column="2" x:Name="RightContainer">
             <Button x:Name="UserButton" TextColor="#222222" FontSize="Small" BorderColor="#222222" Clicked="UserButtonNavigate"/>
         </StackLayout>
     </Grid>

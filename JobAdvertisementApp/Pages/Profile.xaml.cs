@@ -27,8 +27,28 @@ public partial class Profile : ContentPage
         this.jobExperienceApiService = jobExperienceApiService;
         this.educationApiService = educationApiService;
         this.courseApiService = courseApiService;
-        GetData();
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        NavBar.OnAppearing();
+        if (this.Width < 800)
+        {
+            Grid.SetColumn(Right, 0);
+            Grid.SetRow(Right, 1);
+            SecondColumn.Width = new GridLength(0, GridUnitType.Star);
+            Left.MinimumHeightRequest = -1;
+        }
+        else
+        {
+            Grid.SetColumn(Right, 1);
+            Grid.SetRow(Right, 0);
+            SecondColumn.Width = new GridLength(2, GridUnitType.Star);
+            Left.MinimumHeightRequest = ScrollView.Height;
+        }
+        GetData();
+    }
 
     private void PageSizeChanged(object sender, EventArgs e)
     {
@@ -57,8 +77,9 @@ public partial class Profile : ContentPage
         BindableLayout.SetItemsSource(Languages, languages);
         PersonalInfo1.BindingContext = App.LoggedUser;
         PersonalInfo2.BindingContext = App.LoggedUser;
-        if(App.LoggedUser.Skills != null)
+        if(App.LoggedUser.Skills != null && App.LoggedUser.Skills != string.Empty)
         {
+            skills.Clear();
             string[] skillsResponse = App.LoggedUser.Skills.Split(";");
             foreach (string skill in skillsResponse)
                 skills.Add(skill);
@@ -114,12 +135,6 @@ public partial class Profile : ContentPage
 	{
 		await Shell.Current.GoToAsync("//MainPage");
 	}
-
-	protected override void OnAppearing()
-	{
-		base.OnAppearing();
-		NavBar.OnAppearing();
-    }
 
 	private async Task<bool> Save()
 	{
@@ -298,26 +313,22 @@ public partial class Profile : ContentPage
     private async void AddLanguage(object sender, EventArgs e)
     {
 
-        //string result = await DisplayPromptAsync("Dodawanie jêzyka", "WprowadŸ odnoœnik");
-        //if (string.IsNullOrEmpty(result))
-        //    return;
-        //Models.Profile newProfile = new Models.Profile() { Link = result };
-        //if (await profileApiService.AddToIdAsync(App.LoggedUser.Id.ToString(), newProfile))
-        //    profiles.Add(newProfile);
-        //else
-        //    await DisplayAlert("Dodawanie odnoœnika do profilu", "Wyst¹pi³ b³¹d przy dodawaniu", "OK");
+        await Shell.Current.GoToAsync("//AddLanguage");
     }
 
     private async void DeleteLanguage(object sender, EventArgs e)
     {
-        //if (await DisplayAlert("Usuwanie odnoœnika", "Czy chcesz usun¹æ odnoœnik?", "Tak", "Nie"))
-        //{
-        //    Models.Profile profileToDelete = ((TapGestureRecognizer)((Label)sender).GestureRecognizers[0]).CommandParameter as Models.Profile;
-        //    if (await profileApiService.DeleteAsync(profileToDelete.Id.ToString()))
-        //        profiles.Remove(profileToDelete);
-        //    else
-        //        await DisplayAlert("Usuwanie odnoœnika do profilu", "Wyst¹pi³ b³¹d przy usuwaniu", "OK");
-        //}
+        if (await DisplayAlert("Usuwanie jêzyka", "Czy chcesz usun¹æ jêzyk?", "Tak", "Nie"))
+        {
+            Language languageToDelete = ((TapGestureRecognizer)((Label)sender).GestureRecognizers[0]).CommandParameter as Language;
+            if (await languageApiService.UserDeleteLanguageAsync(App.LoggedUser.Id.ToString(), languageToDelete.Id.ToString()))
+            {
+                languages.Remove(languageToDelete);
+                UpdateLayout();
+            }
+            else
+                await DisplayAlert("Usuwanie jêzyka", "Wyst¹pi³ b³¹d przy usuwaniu", "OK");
+        }
     }
 
     private async void AddSkill(object sender, EventArgs e)
@@ -351,17 +362,17 @@ public partial class Profile : ContentPage
 
     private async void AddJobExperience(object sender, EventArgs e)
     {
-        await Shell.Current.Navigation.PushModalAsync(new AddJobExperience());
+        await Shell.Current.GoToAsync("//AddJobExperience");
     }
 
     private async void AddEducation(object sender, EventArgs e)
     {
-
+        await Shell.Current.GoToAsync("//AddEducation");
     }
 
     private async void AddCourse(object sender, EventArgs e)
     {
-
+        await Shell.Current.GoToAsync("//AddCourse");
     }
 
     private async void DeleteJobExperience(object sender, EventArgs e)

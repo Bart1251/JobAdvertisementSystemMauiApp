@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JobAdvertisementApp.Pages.AddLanguage"
+             Title="AddLanguage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#EEEEEE">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Text="🡠" TextColor="#222222" FontSize="Small" BorderColor="#222222" Clicked="GoBack" HorizontalOptions="Start"/>
+        <ScrollView Grid.Row="1">
+            <Grid WidthRequest="300" x:Name="MainGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="1" Text="Nowy język" FontSize="Medium" TextColor="#222222" HorizontalTextAlignment="Center" Margin="0, 10"/>
+                <Label Grid.Row="2" Text="Język" TextColor="#222222" Margin="10, 0"/>
+                <Picker Grid.Row="3" x:Name="LanguageName" FontSize="Medium" Margin="0, 0, 0, 10" HeightRequest="45" WidthRequest="300" TextColor="#CCCCCC" BackgroundColor="#222222" ItemDisplayBinding="{Binding Name}"/>
+                <Label Grid.Row="4" Text="Poziom" TextColor="#222222" Margin="10, 0"/>
+                <Picker Grid.Row="5" x:Name="LanguageLevel" FontSize="Medium" Margin="0, 0, 0, 10" HeightRequest="45" WidthRequest="300" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Button Grid.Row="6" Text="Dodaj" TextColor="#222222" FontSize="Small" BorderColor="#222222" Clicked="Submit"/>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

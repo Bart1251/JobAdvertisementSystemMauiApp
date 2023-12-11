@@ -1,9 +1,6 @@
 ﻿using JobAdvertisementApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace JobAdvertisementApp.Services
 {
@@ -12,6 +9,22 @@ namespace JobAdvertisementApp.Services
         public LanguageApiService(HttpClient httpClient) : base(httpClient, "api/Language")
         {
 
+        }
+
+        public async Task<bool> UserAddLanguageAsync(string userId, string languageId)
+        {
+            HttpResponseMessage response = await httpClient.PostAsync(baseAddress + "/api/UserLanguage/" + userId + "/" + languageId, new StringContent(""));
+
+            if (response.IsSuccessStatusCode) return true;
+            return false;
+        }
+
+        public async Task<bool> UserDeleteLanguageAsync(string userId, string languageId)
+        {
+            HttpResponseMessage response = await httpClient.DeleteAsync(baseAddress + "/api/UserLanguage/" + userId + "/" + languageId);
+
+            if (response.IsSuccessStatusCode) return true;
+            return false;
         }
     }
 }

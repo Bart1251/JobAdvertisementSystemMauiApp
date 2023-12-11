@@ -13,9 +13,9 @@
 
     public enum EducationLevel
     {
-        Poziom1,
-        Poziom2,
-        Poziom3,
-        Poziom4
+        Podstawowe,
+        Zawodowe,
+        Średnie,
+        Licencjat
     }
 }

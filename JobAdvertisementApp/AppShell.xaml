@@ -21,5 +21,17 @@
     <ShellContent
         ContentTemplate="{DataTemplate pages:Profile}"
         Route="Profile" />
+    <ShellContent
+        ContentTemplate="{DataTemplate pages:AddJobExperience}"
+        Route="AddJobExperience" />
+    <ShellContent
+        ContentTemplate="{DataTemplate pages:AddEducation}"
+        Route="AddEducation" />
+    <ShellContent
+        ContentTemplate="{DataTemplate pages:AddCourse}"
+        Route="AddCourse" />
+    <ShellContent
+        ContentTemplate="{DataTemplate pages:AddLanguage}"
+        Route="AddLanguage" />
 
 </Shell>

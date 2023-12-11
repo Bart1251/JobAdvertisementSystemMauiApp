@@ -29,7 +29,11 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<Login>();
 		builder.Services.AddSingleton<Register>();
-		builder.Services.AddSingleton<Profile>();
+		builder.Services.AddTransient<Profile>();
+		builder.Services.AddTransient<AddJobExperience>();
+		builder.Services.AddTransient<AddEducation>();
+		builder.Services.AddTransient<AddCourse>();
+		builder.Services.AddTransient<AddLanguage>();
 
         return builder.Build();
 	}

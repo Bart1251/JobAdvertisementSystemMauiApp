@@ -19,6 +19,22 @@ namespace JobAdvertisementAppAPI.Controllers
             this.mapper = mapper;
         }
 
+        [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<LanguageDto>))]
+        [ProducesResponseType(400)]
+        public IActionResult GetLanguages()
+        {
+            var languages = mapper.Map<IEnumerable<LanguageDto>>(languageRepository.GetLanguages());
+
+            if (languages.Count() == 0)
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(languages);
+        }
+
         [HttpGet("{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<LanguageDto>))]
         [ProducesResponseType(400)]

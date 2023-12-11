@@ -27,7 +27,7 @@
 
                 <VerticalStackLayout x:Name="Left" Grid.Row="0" Grid.Column="0" BackgroundColor="CadetBlue" Padding="10" Spacing="20">
                     <Frame Grid.Row="0" CornerRadius="100" WidthRequest="200" HeightRequest="200" BackgroundColor="White" BorderColor="Transparent" Padding="0">
-                        <Image Source="default_profile.jpg" Aspect="Fill"/>
+                        <Image Source="default_profile.jpg" Aspect="Fill" WidthRequest="200" HeightRequest="200"/>
                     </Frame>
                     <VerticalStackLayout x:Name="PersonalInfo1">
                         <Label FontSize="Medium" TextColor="#222222" HorizontalOptions="Center" FontAttributes="Bold">
@@ -41,7 +41,7 @@
                                 <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="UpdateName"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="{Binding Occupation}" TextColor="#222222" HorizontalOptions="Center" FontAttributes="Italic">
+                        <Label Text="{Binding Occupation}" TextColor="#222222" HorizontalOptions="Center" FontAttributes="Italic" MinimumWidthRequest="50">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="UpdateOccupation"/>
                             </Label.GestureRecognizers>

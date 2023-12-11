@@ -10,5 +10,7 @@ public partial class JobExperienceView : ContentView
         this.BindingContext = jobExperience;
 		BindableLayout.SetItemsSource(Responsibilities, jobExperience.Responsibilities.Split(";"));
 		Delete.Clicked += delete;
+		if (PeriodOdEmploymentEnd.Text.Contains(DateTime.MaxValue.ToShortDateString()))
+			PeriodOdEmploymentEnd.Text = "Do: Nadal";
 	}
 }

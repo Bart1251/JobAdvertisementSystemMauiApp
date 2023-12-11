@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JobAdvertisementApp.Pages.AddEducation"
+             Title="AddEducation"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#EEEEEE">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Text="🡠" TextColor="#222222" FontSize="Small" BorderColor="#222222" Clicked="GoBack" HorizontalOptions="Start"/>
+        <ScrollView Grid.Row="1">
+            <Grid WidthRequest="300" x:Name="MainGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="1" Text="Nowe wykształcenie" FontSize="Medium" TextColor="#222222" HorizontalTextAlignment="Center" Margin="0, 10"/>
+                <Entry Grid.Row="2" Placeholder="Instytucja" x:Name="Institution" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="0, 0, 0, 10" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Entry Grid.Row="3" Placeholder="Miasto" x:Name="Town" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="0, 0, 0, 10" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Entry Grid.Row="4" Placeholder="Kierunek" x:Name="FieldOfStudy" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="0, 0, 0, 10" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Label Grid.Row="5" Text="Poziom wykształcenia" TextColor="#222222" Margin="10, 0"/>
+                <Picker Grid.Row="6" x:Name="EducationLevel" FontSize="Medium" Margin="0, 0, 0, 10" HeightRequest="45" WidthRequest="300" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Label Grid.Row="7" Text="Rozpoczęcie nauki" TextColor="#222222" Margin="10, 0"/>
+                <DatePicker Grid.Row="8" x:Name="PeriodOfEducationStart" FontSize="Medium" Margin="0, 0, 0, 10" HeightRequest="45" WidthRequest="300" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Label Grid.Row="9" Text="Zakończenie nauki" TextColor="#222222" Margin="10, 0"/>
+                <DatePicker Grid.Row="10" x:Name="PeriodOfEducationEnd" FontSize="Medium" Margin="0, 0, 0, 10" HeightRequest="45" WidthRequest="300" TextColor="#CCCCCC" BackgroundColor="#222222"/>
+                <Button Grid.Row="11" Text="Dodaj" TextColor="#222222" FontSize="Small" BorderColor="#222222" Clicked="Submit"/>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

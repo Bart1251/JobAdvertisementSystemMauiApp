@@ -53,7 +53,7 @@ namespace JobAdvertisementAppAPI.Controllers
             return Ok("Successfully created");
         }
 
-        [HttpDelete("{userId}/{language}")]
+        [HttpDelete("{userId}/{languageId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
