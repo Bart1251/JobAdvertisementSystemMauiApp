@@ -15,6 +15,11 @@ builder.Services.AddScoped<IEducationRepository, EducationRepository>();
 builder.Services.AddScoped<IJobExperienceRepository, JobExperienceRepository>();
 builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
 builder.Services.AddScoped<IUserLanguageRepository, UserLanguageRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IJobLevelRepository, JobLevelRepository>();
+builder.Services.AddScoped<IJobTypeRepository, JobTypeRepository>();
+builder.Services.AddScoped<ITypeOfContractRepository, TypeOfContractRepository>();
+builder.Services.AddScoped<IWorkingShiftRepository, WorkingShiftRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -24,6 +24,11 @@ public static class MauiProgram
 		builder.Services.AddSingleton<JobExperienceApiService>();
 		builder.Services.AddSingleton<EducationApiService>();
 		builder.Services.AddSingleton<CourseApiService>();
+		builder.Services.AddSingleton<CategoryApiService>();
+		builder.Services.AddSingleton<JobTypeApiService>();
+		builder.Services.AddSingleton<WorkingShiftApiService>();
+		builder.Services.AddSingleton<TypeOfContractApiService>();
+		builder.Services.AddSingleton<JobLevelApiService>();
         builder.Services.AddSingleton<PasswordHasher>();
 
 		builder.Services.AddSingleton<MainPage>();

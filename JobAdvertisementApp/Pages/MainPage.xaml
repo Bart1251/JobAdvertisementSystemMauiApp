@@ -17,9 +17,33 @@
         </Grid.RowDefinitions>
         <controls:NavBar x:Name="NavBar" Grid.Row="0"/>
         <ScrollView Grid.Row="1" BackgroundColor="#EEEEEE">
-            <VerticalStackLayout>
+            <VerticalStackLayout HorizontalOptions="FillAndExpand">
                 <Image x:Name="Banner" Source="baner.png"/>
-                
+                <StackLayout x:Name="Row1" Orientation="Horizontal" Spacing="0" HorizontalOptions="Center" Padding="10">
+                    <Entry x:Name="Position" Placeholder="Stanowisko" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="350" HeightRequest="60" VerticalTextAlignment="Center" Margin="1"/>
+                    <Picker x:Name="Category" ItemDisplayBinding="{Binding Name}" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="300" HeightRequest="60" VerticalTextAlignment="Center" Margin="1"/>
+                    <Entry x:Name="Location" Placeholder="Lokalizacja" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="350" HeightRequest="60" VerticalTextAlignment="Center" Margin="1"/>
+                    <Picker x:Name="Distance" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="200" HeightRequest="60" VerticalTextAlignment="Center" Margin="1">
+                        <Picker.Items>
+                            <x:String>+0km</x:String>
+                            <x:String>+10km</x:String>
+                            <x:String>+20km</x:String>
+                            <x:String>+30km</x:String>
+                            <x:String>+50km</x:String>
+                            <x:String>+100km</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                <StackLayout x:Name="Row2" Orientation="Horizontal" Spacing="0" HorizontalOptions="Center" Padding="10">
+                    <Picker x:Name="JobLevel" ItemDisplayBinding="{Binding Level}" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="240" VerticalOptions="Center" HeightRequest="50" Margin="1"/>
+                    <Picker x:Name="TypeOfContract" ItemDisplayBinding="{Binding Type}" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="240" VerticalOptions="Center" HeightRequest="50" Margin="1"/>
+                    <Picker x:Name="WorkingShift" ItemDisplayBinding="{Binding Shift}" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="240" VerticalOptions="Center" HeightRequest="50" Margin="1"/>
+                    <Picker x:Name="JobType" ItemDisplayBinding="{Binding Type}" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="240" VerticalOptions="Center" HeightRequest="50" Margin="1"/>
+                    <Button Text="Szukaj" BackgroundColor="CadetBlue" TextColor="#CCCCCC" FontSize="Small" WidthRequest="240" VerticalOptions="Center" HeightRequest="50" Margin="1"/>
+                </StackLayout>
+                <FlexLayout Direction="Row" Wrap="Wrap">
+                    
+                </FlexLayout>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>
