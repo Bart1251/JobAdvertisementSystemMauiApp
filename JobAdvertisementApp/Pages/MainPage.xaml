@@ -4,7 +4,8 @@
              xmlns:controls="clr-namespace:JobAdvertisementApp.Controls"
              x:Class="JobAdvertisementApp.Pages.MainPage"
              Shell.NavBarIsVisible="False"
-             SizeChanged="PageSizeChanged">
+             SizeChanged="PageSizeChanged"
+             BackgroundColor="#EEEEEE">
     
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IsVisible="False"/>
@@ -16,7 +17,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <controls:NavBar x:Name="NavBar" Grid.Row="0"/>
-        <ScrollView Grid.Row="1" BackgroundColor="#EEEEEE">
+        <ScrollView Grid.Row="1">
             <VerticalStackLayout HorizontalOptions="FillAndExpand">
                 <Image x:Name="Banner" Source="baner.png"/>
                 <StackLayout x:Name="Row1" Orientation="Horizontal" Spacing="0" HorizontalOptions="Center" Padding="10">
@@ -41,9 +42,20 @@
                     <Picker x:Name="JobType" ItemDisplayBinding="{Binding Type}" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="240" VerticalOptions="Center" HeightRequest="50" Margin="1"/>
                     <Button Text="Szukaj" BackgroundColor="CadetBlue" TextColor="#CCCCCC" FontSize="Small" WidthRequest="240" VerticalOptions="Center" HeightRequest="50" Margin="1"/>
                 </StackLayout>
-                <FlexLayout Direction="Row" Wrap="Wrap">
-                    
-                </FlexLayout>
+                <VerticalStackLayout x:Name="Offers" Margin="20" Spacing="10">
+                    <controls:OfferTile/>
+                    <controls:OfferTile/>
+                    <controls:OfferTile/>
+                    <controls:OfferTile/>
+                    <controls:OfferTile/>
+                    <controls:OfferTile/>
+                    <controls:OfferTile/>
+                    <controls:OfferTile/>
+                    <controls:OfferTile/>
+                    <controls:OfferTile/>
+                    <controls:OfferTile/>
+                    <controls:OfferTile/>
+                </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

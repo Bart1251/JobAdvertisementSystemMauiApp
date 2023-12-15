@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JobAdvertisementApp.Pages.Offer"
+             xmlns:controls="clr-namespace:JobAdvertisementApp.Controls"
+             Title="Offer"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#EEEEEE"
+             SizeChanged="PageSizeChanged">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"/>
+    </Shell.BackButtonBehavior>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <controls:NavBar x:Name="NavBar" Grid.Row="0"/>
+        <ScrollView Grid.Row="1" x:Name="ScrollView">
+            <VerticalStackLayout x:Name="MainContainer">
+                <Frame BorderColor="Transparent" BackgroundColor="#FFFFFF">
+                    <VerticalStackLayout Spacing="20">
+                        <Grid x:Name="MainInfoTop" ColumnSpacing="10" RowSpacing="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Grid.Row="0" MaximumHeightRequest="40" MaximumWidthRequest="40" Source="default_profile.jpg" VerticalOptions="Start"/>
+                            <VerticalStackLayout Grid.Column="1" Grid.Row="0">
+                                <Label Text="Doradca Klienta Biznesowego sieci komórkowej Plus" TextColor="#222222" FontSize="Medium" LineBreakMode="WordWrap"/>
+                                <Label Text="Coltex Rogala sp.j." TextColor="#444444" LineBreakMode="WordWrap"/>
+                            </VerticalStackLayout>
+                            <Frame x:Name="WegeFrame" Grid.Column="2" Grid.Row="0" BackgroundColor="CadetBlue" BorderColor="Transparent">
+                                <VerticalStackLayout>
+                                    <Label Text="Wynagrodzenie:" TextColor="#CCCCCC" FontAttributes="Bold"/>
+                                    <Label Text="10 000 - 20 000 zł" TextColor="#CCCCCC" FontAttributes="Bold"/>
+                                    <Label Text="brutto / mies." TextColor="#CCCCCC"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </Grid>
+                        <Grid x:Name="MainInfoBottom" RowSpacing="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <VerticalStackLayout x:Name="Left" Grid.Column="0" Grid.Row="0" Spacing="10">
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image Source="typeofcontract.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
+                                    <Label Text="umowa agencyjna" TextColor="#222222" VerticalTextAlignment="Center"/>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image Source="joblevel.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
+                                    <Label Text="specjalista (mid/regular)" TextColor="#222222" VerticalTextAlignment="Center"/>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image Source="category.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
+                                    <Label Text="praca biurowa" TextColor="#222222" VerticalTextAlignment="Center"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout x:Name="Right" Grid.Column="1" Grid.Row="0" Spacing="10">
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image Source="workingshift.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
+                                    <Label Text="pełny etat" TextColor="#222222" VerticalTextAlignment="Center"/>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image Source="jobtype.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
+                                    <Label Text="praca mobilna" TextColor="#222222" VerticalTextAlignment="Center"/>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image Source="expires.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
+                                    <Label Text="wygasa 12.12.2023" TextColor="#222222" VerticalTextAlignment="Center"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

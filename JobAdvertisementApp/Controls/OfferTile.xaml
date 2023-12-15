@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JobAdvertisementApp.Controls.OfferTile">
+
+    <Frame CornerRadius="10" BackgroundColor="#FFFFFF" HeightRequest="200" Padding="10" BorderColor="Transparent">
+        <Frame.GestureRecognizers>
+            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Navigate"/>
+        </Frame.GestureRecognizers>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <VerticalStackLayout Grid.Row="0" VerticalOptions="Center">
+                <Label Text="Doradca Klienta Biznesowego sieci komórkowej Plus" TextColor="#222222" FontSize="Medium"/>
+                <Label Text="10 000 - 20 000 zł brutto mies." TextColor="#666666" FontSize="Small"/>
+            </VerticalStackLayout>
+            <HorizontalStackLayout Grid.Row="1" VerticalOptions="Center">
+                <Image MaximumHeightRequest="40"/>
+                <VerticalStackLayout>
+                    <Label Text="Coltex Rogala sp.j." TextColor="#333333" FontSize="Small"/>
+                    <Label Text="Łukuta" TextColor="#555555"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </Grid>
+    </Frame>
+</ContentView>

@@ -39,6 +39,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<AddEducation>();
 		builder.Services.AddTransient<AddCourse>();
 		builder.Services.AddTransient<AddLanguage>();
+		builder.Services.AddTransient<Offer>();
 
         return builder.Build();
 	}

@@ -19,6 +19,7 @@ public partial class MainPage : ContentPage
         this.typeOfContractApiService = typeOfContractApiService;
         this.jobTypeApiService = jobTypeApiService;
         this.jobLevelApiService = jobLevelApiService;
+        SetDropdowns();
     }
 
 	private void PageSizeChanged(object sender, EventArgs e)
@@ -34,28 +35,13 @@ public partial class MainPage : ContentPage
             {
                 control.HeightRequest = 50;
             }
-
-            if (this.Width < 600)
+			foreach(View control in Row1.Children)
 			{
-				foreach(View control in Row1.Children)
-				{
-					control.WidthRequest = 300;
-				}
-                foreach (View control in Row2.Children)
-                {
-                    control.WidthRequest = 300;
-                }
-            }
-			else
-			{
-                foreach (View control in Row1.Children)
-                {
-                    control.WidthRequest = 500;
-                }
-                foreach (View control in Row2.Children)
-                {
-                    control.WidthRequest = 500;
-                }
+				control.WidthRequest = this.Width - Math.Pow(Math.Log10((this.Width - 400) > 0 ? this.Width - 400 : 1), 5) * 2;
+			}
+            foreach (View control in Row2.Children)
+            {
+                control.WidthRequest = this.Width - Math.Pow(Math.Log10((this.Width - 400) > 0 ? this.Width - 400 : 1), 5) * 2;
             }
         }
 		else
@@ -79,12 +65,18 @@ public partial class MainPage : ContentPage
         }
         ((IView)Row1).InvalidateMeasure();
         ((IView)Row2).InvalidateMeasure();
+
+        Offers.Margin = new Thickness(Math.Pow(Math.Log10((this.Width - 400) > 0 ? this.Width - 400 : 1), 5), 10);
     }
 
 	protected override async void OnAppearing()
 	{
 		base.OnAppearing();
 		NavBar.OnAppearing();
+	}
+
+    private async void SetDropdowns()
+    {
         List<Category> categories = new List<Category>() { new Category() { Name = "Kategoria" } };
         categories.AddRange(await categoryApiService.GetAllAsync());
         Category.ItemsSource = categories;
@@ -111,6 +103,6 @@ public partial class MainPage : ContentPage
         JobLevel.ItemsSource = JobLevel.GetItemsAsArray();
         JobLevel.SelectedIndex = 0;
         Distance.SelectedIndex = 3;
-	}
+    }
 }
 
