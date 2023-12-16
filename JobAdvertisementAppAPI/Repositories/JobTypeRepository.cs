@@ -19,6 +19,11 @@ namespace JobAdvertisementAppAPI.Repositories
             return Save();
         }
 
+        public JobType? GetJobType(int id)
+        {
+            return dataContext.JobType.Where(e => e.Id == id).FirstOrDefault();
+        }
+
         public bool DeleteJobType(JobType jobType)
         {
             dataContext.JobType.Remove(jobType);

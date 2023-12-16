@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="UploadedImages\Companies\" />
     <Folder Include="UploadedImages\Users\" />
   </ItemGroup>
 

@@ -19,6 +19,11 @@ namespace JobAdvertisementAppAPI.Repositories
             return Save();
         }
 
+        public TypeOfContract? GetTypeOfContract(int id)
+        {
+            return dataContext.TypeOfContract.Where(e => e.Id == id).FirstOrDefault();
+        }
+
         public bool DeleteTypeOfContract(TypeOfContract typeOfContract)
         {
             dataContext.TypeOfContract.Remove(typeOfContract);

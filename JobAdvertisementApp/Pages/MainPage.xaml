@@ -43,18 +43,6 @@
                     <Button Text="Szukaj" BackgroundColor="CadetBlue" TextColor="#CCCCCC" FontSize="Small" WidthRequest="240" VerticalOptions="Center" HeightRequest="50" Margin="1"/>
                 </StackLayout>
                 <VerticalStackLayout x:Name="Offers" Margin="20" Spacing="10">
-                    <controls:OfferTile/>
-                    <controls:OfferTile/>
-                    <controls:OfferTile/>
-                    <controls:OfferTile/>
-                    <controls:OfferTile/>
-                    <controls:OfferTile/>
-                    <controls:OfferTile/>
-                    <controls:OfferTile/>
-                    <controls:OfferTile/>
-                    <controls:OfferTile/>
-                    <controls:OfferTile/>
-                    <controls:OfferTile/>
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

@@ -19,6 +19,11 @@ namespace JobAdvertisementAppAPI.Repositories
             return Save();
         }
 
+        public Category? GetCategory(int id)
+        {
+            return dataContext.Category.Where(e => e.Id == id).FirstOrDefault();
+        }
+
         public bool DeleteCategory(Category category)
         {
             dataContext.Category.Remove(category);

@@ -12,7 +12,7 @@
         <BackButtonBehavior IsVisible="False"/>
     </Shell.BackButtonBehavior>
 
-    <Grid>
+    <Grid x:Name="PageGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
@@ -34,13 +34,20 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Grid.Row="0" MaximumHeightRequest="40" MaximumWidthRequest="40" Source="default_profile.jpg" VerticalOptions="Start"/>
                             <VerticalStackLayout Grid.Column="1" Grid.Row="0">
-                                <Label Text="Doradca Klienta Biznesowego sieci komórkowej Plus" TextColor="#222222" FontSize="Medium" LineBreakMode="WordWrap"/>
-                                <Label Text="Coltex Rogala sp.j." TextColor="#444444" LineBreakMode="WordWrap"/>
+                                <Label Text="{Binding Position}" TextColor="#222222" FontSize="Medium" LineBreakMode="WordWrap"/>
+                                <Label Text="{Binding Company.Name}" TextColor="#444444" LineBreakMode="WordWrap"/>
                             </VerticalStackLayout>
                             <Frame x:Name="WegeFrame" Grid.Column="2" Grid.Row="0" BackgroundColor="CadetBlue" BorderColor="Transparent">
                                 <VerticalStackLayout>
                                     <Label Text="Wynagrodzenie:" TextColor="#CCCCCC" FontAttributes="Bold"/>
-                                    <Label Text="10 000 - 20 000 zł" TextColor="#CCCCCC" FontAttributes="Bold"/>
+                                    <Label TextColor="#CCCCCC" FontAttributes="Bold">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} - {1} zł">
+                                                <Binding Path="MinimumWege"/>
+                                                <Binding Path="MaximumWege"/>
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
                                     <Label Text="brutto / mies." TextColor="#CCCCCC"/>
                                 </VerticalStackLayout>
                             </Frame>
@@ -57,29 +64,29 @@
                             <VerticalStackLayout x:Name="Left" Grid.Column="0" Grid.Row="0" Spacing="10">
                                 <HorizontalStackLayout Spacing="10">
                                     <Image Source="typeofcontract.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
-                                    <Label Text="umowa agencyjna" TextColor="#222222" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding TypeOfContract.Type}" TextColor="#222222" VerticalTextAlignment="Center"/>
                                 </HorizontalStackLayout>
                                 <HorizontalStackLayout Spacing="10">
                                     <Image Source="joblevel.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
-                                    <Label Text="specjalista (mid/regular)" TextColor="#222222" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding JobLevel.Level}" TextColor="#222222" VerticalTextAlignment="Center"/>
                                 </HorizontalStackLayout>
                                 <HorizontalStackLayout Spacing="10">
                                     <Image Source="category.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
-                                    <Label Text="praca biurowa" TextColor="#222222" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Category.Name}" TextColor="#222222" VerticalTextAlignment="Center"/>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                             <VerticalStackLayout x:Name="Right" Grid.Column="1" Grid.Row="0" Spacing="10">
                                 <HorizontalStackLayout Spacing="10">
                                     <Image Source="workingshift.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
-                                    <Label Text="pełny etat" TextColor="#222222" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding WorkingShift.Shift}" TextColor="#222222" VerticalTextAlignment="Center"/>
                                 </HorizontalStackLayout>
                                 <HorizontalStackLayout Spacing="10">
                                     <Image Source="jobtype.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
-                                    <Label Text="praca mobilna" TextColor="#222222" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding JobType.Type}" TextColor="#222222" VerticalTextAlignment="Center"/>
                                 </HorizontalStackLayout>
                                 <HorizontalStackLayout Spacing="10">
                                     <Image Source="expires.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
-                                    <Label Text="wygasa 12.12.2023" TextColor="#222222" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Expires, StringFormat='Wygasa {0:d}'}" TextColor="#222222" VerticalTextAlignment="Center"/>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Grid>

@@ -19,6 +19,11 @@ namespace JobAdvertisementAppAPI.Repositories
             return Save();
         }
 
+        public WorkingShift? GetWorkingShift(int id)
+        {
+            return dataContext.WorkingShift.Where(e => e.Id == id).FirstOrDefault();
+        }
+
         public bool DeleteWorkingShift(WorkingShift workingShift)
         {
             dataContext.WorkingShift.Remove(workingShift);

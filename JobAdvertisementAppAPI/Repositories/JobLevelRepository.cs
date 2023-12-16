@@ -19,6 +19,11 @@ namespace JobAdvertisementAppAPI.Repositories
             return Save();
         }
 
+        public JobLevel? GetJobLevel(int id)
+        {
+            return dataContext.JobLevel.Where(e => e.Id == id).FirstOrDefault();
+        }
+
         public bool DeleteJobLevel(JobLevel jobLevel)
         {
             dataContext.JobLevel.Remove(jobLevel);

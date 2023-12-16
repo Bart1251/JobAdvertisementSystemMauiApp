@@ -30,7 +30,7 @@ public partial class AddLanguage : ContentPage
             }
         }
         LanguageName.ItemsSource = languages;
-        LanguageName.ItemsSource = LanguageName.GetItemsAsArray();
+        if(DeviceInfo.Platform == DevicePlatform.Android) LanguageName.ItemsSource = LanguageName.GetItemsAsArray();
     }
 
     private async void GoBack(object sender, EventArgs e)
