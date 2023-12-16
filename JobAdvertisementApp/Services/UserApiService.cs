@@ -14,20 +14,5 @@ namespace JobAdvertisementApp.Services
         {
 
         }
-
-        public async Task<User> GetUserByEmailAsync(string email)
-        {
-            User result = null;
-
-            HttpResponseMessage response = await httpClient.GetAsync(url + "/" + email);
-
-            if(response.IsSuccessStatusCode)
-            {
-                string content = await response.Content.ReadAsStringAsync();
-                result = JsonSerializer.Deserialize<User>(content, jsonSerialzierOptions);
-            }
-
-            return result;
-        }
     }
 }

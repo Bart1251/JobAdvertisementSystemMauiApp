@@ -71,6 +71,9 @@ public partial class Profile : ContentPage
 
 	private async void GetData()
 	{
+        byte[] imageBytes = await userApiService.GetImage(App.LoggedUser.Id.ToString());
+        if(imageBytes != null)
+            ProfileImage.Source = ImageSource.FromStream(() => new MemoryStream(imageBytes));
         await GetProfiles();
         BindableLayout.SetItemsSource(Links, profiles);
         await GetLanguages();
@@ -148,11 +151,34 @@ public partial class Profile : ContentPage
         ((IView)MainGrid).InvalidateMeasure();
     }
 
-	private async void UpdateDateOfBirth(object sender, EventArgs e)
+    private async void UpdateImage(object sender, EventArgs e)
+    {
+        var file = await MediaPicker.PickPhotoAsync();
+        if (file != null)
+        {
+            byte[] imageBytes = null;
+            using (Stream stream = await file.OpenReadAsync())
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    await stream.CopyToAsync(ms);
+                    imageBytes = ms.ToArray();
+                }
+            }
+
+            if(await userApiService.UploadImage(App.LoggedUser.Id.ToString(), imageBytes))
+                ProfileImage.Source = ImageSource.FromStream(() => new MemoryStream(imageBytes));
+            else
+                await DisplayAlert("Zmiana wartoœci", "Wyst¹pi³ b³¹d przy zapisie", "OK");
+        }
+    }
+
+
+    private async void UpdateDateOfBirth(object sender, EventArgs e)
 	{
         try
 		{
-			string result = await DisplayPromptAsync("Zmaina wartoœci", "WprowadŸ datê urodzenia", placeholder: "01-01-2023", initialValue: App.LoggedUser.DateOfBirth.ToShortDateString());
+			string result = await DisplayPromptAsync("Zmaina wartoœci", "WprowadŸ datê urodzenia", initialValue: App.LoggedUser.DateOfBirth.ToShortDateString());
 			if (string.IsNullOrEmpty(result))
 				return;
             DateTime date = DateTime.Parse(result);

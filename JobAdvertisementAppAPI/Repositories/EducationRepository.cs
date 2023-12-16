@@ -32,7 +32,7 @@ namespace JobAdvertisementAppAPI.Repositories
 
         public IEnumerable<Education> GetUserEducations(int userId)
         {
-            return dataContext.Education.Where(e => e.User.Id == userId).ToList();
+            return dataContext.Education.Where(e => e.User.Id == userId).OrderByDescending(e => e.PeriodOfEducationEnd).ThenByDescending(e => e.PeriodOfEducationStart).ToList();
         }
 
         public bool Save()

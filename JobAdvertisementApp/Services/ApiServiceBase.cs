@@ -108,5 +108,43 @@ namespace JobAdvertisementApp.Services
             if (response.IsSuccessStatusCode) return true;
             return false;
         }
+
+        public virtual async Task<byte[]> GetImage(string id)
+        {
+            try
+            {
+                Stream imageStream = await httpClient.GetStreamAsync(url + "/images/" + id);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    await imageStream.CopyToAsync(ms);
+                    return ms.ToArray();
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public virtual async Task<bool> UploadImage(string id, byte[] imageBytes)
+        {
+            try
+            {
+                using (ByteArrayContent content = new ByteArrayContent(imageBytes))
+                {
+                    content.Headers.Add("Content-Type", "image/png");
+
+                    HttpResponseMessage response = await httpClient.PostAsync(url + "/images/" + id, content);
+
+                    if (response.IsSuccessStatusCode) return true;
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

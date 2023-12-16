@@ -32,6 +32,69 @@ namespace JobAdvertisementAppAPI.Controllers
             return Ok(users);
         }
 
+        [HttpPost("images/{userId}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public IActionResult SaveUserProfileImage(string userId)
+        {
+            var user = userRepository.GetUser(int.Parse(userId));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (user == null)
+                return NotFound();
+
+            try
+            {
+                byte[] imageBytes = null;
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    Request.Body.CopyToAsync(ms);
+                    imageBytes = ms.ToArray();
+                }
+
+                string filePath = Path.Combine("UploadedImages/Users", userId + ".png");
+                System.IO.File.WriteAllBytes(filePath, imageBytes);
+
+                return Ok();
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+        }
+
+        [HttpGet("images/{userId}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public IActionResult GetUserProfileImage(string userId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                string filePath = Path.Combine("UploadedImages/Users", userId + ".png");
+
+                if (!System.IO.File.Exists(filePath))
+                {
+                    return NotFound();
+                }
+
+                byte[] imageBytes = System.IO.File.ReadAllBytes(filePath);
+
+                return File(imageBytes, "image/png");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+        }
+
         [HttpGet("{email}")]
         [ProducesResponseType(200, Type = typeof(UserDto))]
         [ProducesResponseType(400)]

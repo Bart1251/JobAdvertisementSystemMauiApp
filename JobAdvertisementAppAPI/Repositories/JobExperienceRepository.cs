@@ -32,7 +32,7 @@ namespace JobAdvertisementAppAPI.Repositories
 
         public IEnumerable<JobExperience> GetUserJobExperiences(int userId)
         {
-            return dataContext.JobExperience.Where(e => e.User.Id == userId).ToList();
+            return dataContext.JobExperience.Where(e => e.User.Id == userId).OrderByDescending(e => e.PeriodOdEmploymentEnd).ThenByDescending(e => e.PeriodOfEmploymentStart).ToList();
         }
 
         public bool Save()

@@ -28,7 +28,7 @@ public partial class Login : ContentPage
             await DisplayAlert("Wyst¹pi³ problem", "Dane logowania s¹ nieprawid³owe", "OK");
             return;
         }
-        User user = await userApiService.GetUserByEmailAsync(Email.Text);
+        User user = await userApiService.GetAsync(Email.Text);
 
         if (user == null || !passwordHasher.CheckPassword(user.Password, Password.Text))
         {
