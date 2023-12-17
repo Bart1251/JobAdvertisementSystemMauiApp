@@ -1,11 +1,20 @@
 ﻿using AutoMapper;
+using GoogleMapsApi;
+using GoogleMapsApi.Entities.Geocoding.Request;
+using GoogleMapsApi.Entities.Geocoding.Response;
+using GoogleMapsApi.Entities.DistanceMatrix.Request;
+using GoogleMapsApi.Entities.DistanceMatrix.Response;
 using JobAdvertisementAppAPI.Dto;
 using JobAdvertisementAppAPI.Interfaces;
 using JobAdvertisementAppAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Google.Maps;
+using Newtonsoft.Json.Linq;
+using System.Net;
 
 namespace JobAdvertisementAppAPI.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class OfferController : Controller
@@ -34,9 +43,21 @@ namespace JobAdvertisementAppAPI.Controllers
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Offer>))]
         [ProducesResponseType(400)]
-        public IActionResult GetOffers()
+        public IActionResult GetOffers(int? categoryId = null, int? jobLevelId = null, int? typeOfContractId = null, int? jobTypeId = null, int? workingShiftId = null, string? position = null)
         {
-            var offers = offerRepository.GetOffers();
+            var offers = offerRepository.GetNotExpierdOffers();
+            if (position != null)
+                offers = offers.Where(e => e.Position.ToLower().Contains(position.ToLower()));
+            if (categoryId != null)
+                offers = offers.Where(e => e.Category.Id == categoryId);
+            if (jobLevelId != null)
+                offers = offers.Where(e => e.JobLevel.Id == jobLevelId);
+            if (typeOfContractId != null)
+                offers = offers.Where(e => e.TypeOfContract.Id == typeOfContractId);
+            if (jobTypeId != null)
+                offers = offers.Where(e => e.JobType.Id == jobTypeId);
+            if (workingShiftId != null)
+                offers = offers.Where(e => e.WorkingShift.Id == workingShiftId);
 
             if (offers.Count() == 0)
                 return NotFound();

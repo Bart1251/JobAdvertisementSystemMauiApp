@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <controls:NavBar x:Name="NavBar" Grid.Row="0"/>
         <ScrollView Grid.Row="1" x:Name="ScrollView">
-            <VerticalStackLayout x:Name="MainContainer">
+            <VerticalStackLayout x:Name="MainContainer" Spacing="20">
                 <Frame BorderColor="Transparent" BackgroundColor="#FFFFFF">
                     <VerticalStackLayout Spacing="20">
                         <Grid x:Name="MainInfoTop" ColumnSpacing="10" RowSpacing="10">
@@ -90,6 +90,63 @@
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BorderColor="Transparent" BackgroundColor="#FFFFFF">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="Opis" TextColor="#222222" FontSize="Medium"/>
+                        <Label Text="{Binding Description}" TextColor="#222222"/>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BorderColor="Transparent" BackgroundColor="#FFFFFF">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="Obowiązki" TextColor="#222222" FontSize="Medium"/>
+                        <VerticalStackLayout Spacing="5" x:Name="Responsibilities">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Ellipse WidthRequest="10" HeightRequest="10" Fill="#222222"/>
+                                        <Label Text="{Binding .}" TextColor="#222222"/>
+                                    </HorizontalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BorderColor="Transparent" BackgroundColor="#FFFFFF">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="Wymagania" TextColor="#222222" FontSize="Medium"/>
+                        <VerticalStackLayout Spacing="5" x:Name="Requirements">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Ellipse WidthRequest="10" HeightRequest="10" Fill="#222222"/>
+                                        <Label Text="{Binding .}" TextColor="#222222"/>
+                                    </HorizontalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BorderColor="Transparent" BackgroundColor="#FFFFFF">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="Benefity" TextColor="#222222" FontSize="Medium"/>
+                        <VerticalStackLayout Spacing="5" x:Name="Benefits">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Ellipse WidthRequest="10" HeightRequest="10" Fill="#222222"/>
+                                        <Label Text="{Binding .}" TextColor="#222222"/>
+                                    </HorizontalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BorderColor="Transparent" BackgroundColor="#FFFFFF">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="O firmie" TextColor="#222222" FontSize="Medium"/>
+                        <Label Text="{Binding Company.Description}" TextColor="#222222"/>
                     </VerticalStackLayout>
                 </Frame>
             </VerticalStackLayout>

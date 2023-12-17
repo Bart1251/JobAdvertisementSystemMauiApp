@@ -36,6 +36,17 @@ namespace JobAdvertisementAppAPI.Repositories
             return Save();
         }
 
+        public IEnumerable<Offer> GetNotExpierdOffers()
+        {
+            return dataContext.Offer.Where(e => e.Expires > DateTime.Now)
+                .Include(e => e.Company)
+                .Include(e => e.JobLevel)
+                .Include(e => e.TypeOfContract)
+                .Include(e => e.JobType)
+                .Include(e => e.WorkingShift)
+                .Include(e => e.Category).ToList();
+        }
+
         public IEnumerable<Offer> GetOffers()
         {
             return dataContext.Offer

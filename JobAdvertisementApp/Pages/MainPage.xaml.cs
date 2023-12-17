@@ -13,6 +13,12 @@ public partial class MainPage : ContentPage
     private readonly JobLevelApiService jobLevelApiService;
     private readonly OfferApiService offerApiService;
 
+    private List<Category> categories;
+    private List<WorkingShift> workingShifts;
+    private List<TypeOfContract> typeOfContracts;
+    private List<JobType> jobTypes;
+    private List<JobLevel> jobLevels;
+
     public MainPage(CategoryApiService categoryApiService, WorkingShiftApiService workingShiftApiService, TypeOfContractApiService typeOfContractApiService, JobTypeApiService jobTypeApiService, JobLevelApiService jobLevelApiService, OfferApiService offerApiService)
 	{
 		InitializeComponent();
@@ -24,6 +30,24 @@ public partial class MainPage : ContentPage
         this.offerApiService = offerApiService;
         SetDropdowns();
         GetOffers();
+    }
+
+    private async void Search(object sender, EventArgs e)
+    {
+        var offers = await offerApiService.GetFiletredAsync(
+            Category.SelectedIndex > 0 ? categories.Single(e => e.Name == Category.SelectedItem as string).Id.ToString() : "",
+            JobLevel.SelectedIndex > 0 ? jobLevels.Single(e => e.Level == JobLevel.SelectedItem as string).Id.ToString() : "",
+            TypeOfContract.SelectedIndex > 0 ? typeOfContracts.Single(e => e.Type == TypeOfContract.SelectedItem as string).Id.ToString() : "",
+            JobType.SelectedIndex > 0 ? jobTypes.Single(e => e.Type == JobType.SelectedItem as string).Id.ToString() : "",
+            WorkingShift.SelectedIndex > 0 ? workingShifts.Single(e => e.Shift == WorkingShift.SelectedItem as string).Id.ToString() : "",
+            Position.Text);
+        Offers.Children.Clear();
+        foreach (Models.Offer offer in offers)
+        {
+            Offers.Children.Add(new OfferTile(offer));
+        }
+        if (Offers.Children.Count == 0)
+            Offers.Children.Add(new Label() { Text = "Brak wyników", FontSize = 30, TextColor = Color.FromHex("#222222"), Margin = new Thickness(0, 40), HorizontalTextAlignment = TextAlignment.Center});
     }
 
     private void PageSizeChanged(object sender, EventArgs e)
@@ -63,9 +87,7 @@ public partial class MainPage : ContentPage
                 control.WidthRequest = 240;
             }
             Position.WidthRequest = 350;
-            Location.WidthRequest = 350;
             Category.WidthRequest = 300;
-            Distance.WidthRequest = 200;
         }
         ((IView)Row1).InvalidateMeasure();
         ((IView)Row2).InvalidateMeasure();
@@ -82,32 +104,31 @@ public partial class MainPage : ContentPage
 
     private async void SetDropdowns()
     {
-        List<Category> categories = new List<Category>() { new Category() { Name = "Kategoria" } };
+        categories = new List<Category>() { new Category() { Id = 0, Name = "Kategoria" } };
         categories.AddRange(await categoryApiService.GetAllAsync());
         Category.ItemsSource = categories;
         if (DeviceInfo.Platform != DevicePlatform.Android) Category.ItemsSource = Category.GetItemsAsArray();
         Category.SelectedIndex = 0;
-        List<WorkingShift> workingShifts = new List<WorkingShift>() { new WorkingShift() { Shift = "Wymiar pracy" } };
+        workingShifts = new List<WorkingShift>() { new WorkingShift() { Id = 0, Shift = "Wymiar pracy" } };
         workingShifts.AddRange(await workingShiftApiService.GetAllAsync());
         WorkingShift.ItemsSource = workingShifts;
-        if (DeviceInfo.Platform != DevicePlatform.Android) WorkingShift.ItemsSource = WorkingShift.GetItemsAsArray();
+        if (DeviceInfo.Platform != DevicePlatform.Android) WorkingShift.ItemsSource = WorkingShift.GetItemsAsList();
         WorkingShift.SelectedIndex = 0;
-        List<TypeOfContract> typeOfContracts = new List<TypeOfContract>() { new TypeOfContract() { Type = "Rodzaj umowy" } };
+        typeOfContracts = new List<TypeOfContract>() { new TypeOfContract() { Id = 0, Type = "Rodzaj umowy" } };
         typeOfContracts.AddRange(await typeOfContractApiService.GetAllAsync());
         TypeOfContract.ItemsSource = typeOfContracts;
         if (DeviceInfo.Platform != DevicePlatform.Android) TypeOfContract.ItemsSource = TypeOfContract.GetItemsAsArray();
         TypeOfContract.SelectedIndex = 0;
-        List<JobType> jobTypes = new List<JobType>() { new JobType() { Type = "Tryb pracy" } };
+        jobTypes = new List<JobType>() { new JobType() { Id = 0, Type = "Tryb pracy" } };
         jobTypes.AddRange(await jobTypeApiService.GetAllAsync());
         JobType.ItemsSource = jobTypes;
         if (DeviceInfo.Platform != DevicePlatform.Android) JobType.ItemsSource = JobType.GetItemsAsArray();
         JobType.SelectedIndex = 0;
-        List<JobLevel> jobLevels = new List<JobLevel>() { new JobLevel() { Level = "Poziom stanowiska" } };
+        jobLevels = new List<JobLevel>() { new JobLevel() { Id = 0, Level = "Poziom stanowiska" } };
         jobLevels.AddRange(await jobLevelApiService.GetAllAsync());
         JobLevel.ItemsSource = jobLevels;
         if(DeviceInfo.Platform != DevicePlatform.Android) JobLevel.ItemsSource = JobLevel.GetItemsAsArray();
         JobLevel.SelectedIndex = 0;
-        Distance.SelectedIndex = 3;
     }
 
     private async void GetOffers()

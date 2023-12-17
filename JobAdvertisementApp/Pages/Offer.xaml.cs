@@ -1,4 +1,6 @@
+using JobAdvertisementApp.Models;
 using JobAdvertisementApp.Services;
+using Microsoft.Maui.Maps;
 
 namespace JobAdvertisementApp.Pages;
 
@@ -25,6 +27,9 @@ public partial class Offer : ContentPage, IQueryAttributable
     {
         offer = await offerApiService.GetAsync(offerId);
         this.BindingContext = offer;
+        BindableLayout.SetItemsSource(Responsibilities, offer.Responsibilities.Split(";"));
+        BindableLayout.SetItemsSource(Requirements, offer.Requirements.Split(";"));
+        BindableLayout.SetItemsSource(Benefits, offer.Benefits.Split(";"));
     }
 
     private void PageSizeChanged(object sender, EventArgs e)

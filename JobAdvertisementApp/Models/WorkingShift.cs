@@ -4,5 +4,10 @@
     {
         public int Id { get; set; }
         public string? Shift { get; set; }
+
+        public override string ToString()
+        {
+            return Shift;
+        }
     }
 }

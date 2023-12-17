@@ -55,6 +55,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.59" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Controls\CourseView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
