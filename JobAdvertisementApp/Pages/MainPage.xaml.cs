@@ -34,13 +34,23 @@ public partial class MainPage : ContentPage
 
     private async void Search(object sender, EventArgs e)
     {
-        var offers = await offerApiService.GetFiletredAsync(
-            Category.SelectedIndex > 0 ? categories.Single(e => e.Name == Category.SelectedItem as string).Id.ToString() : "",
-            JobLevel.SelectedIndex > 0 ? jobLevels.Single(e => e.Level == JobLevel.SelectedItem as string).Id.ToString() : "",
-            TypeOfContract.SelectedIndex > 0 ? typeOfContracts.Single(e => e.Type == TypeOfContract.SelectedItem as string).Id.ToString() : "",
-            JobType.SelectedIndex > 0 ? jobTypes.Single(e => e.Type == JobType.SelectedItem as string).Id.ToString() : "",
-            WorkingShift.SelectedIndex > 0 ? workingShifts.Single(e => e.Shift == WorkingShift.SelectedItem as string).Id.ToString() : "",
-            Position.Text);
+        IEnumerable<Models.Offer> offers;
+        if(DeviceInfo.Platform == DevicePlatform.Android)
+            offers = await offerApiService.GetFiletredAsync(
+                Category.SelectedIndex > 0 ? ((Models.Category)Category.SelectedItem).Id.ToString() : "",
+                JobLevel.SelectedIndex > 0 ? ((Models.JobLevel)JobLevel.SelectedItem).Id.ToString() : "",
+                TypeOfContract.SelectedIndex > 0 ? ((Models.TypeOfContract)TypeOfContract.SelectedItem).Id.ToString() : "",
+                JobType.SelectedIndex > 0 ? ((Models.JobType)JobType.SelectedItem).Id.ToString() : "",
+                WorkingShift.SelectedIndex > 0 ? ((Models.WorkingShift)WorkingShift.SelectedItem).Id.ToString() : "",
+                Position.Text);
+        else
+            offers = await offerApiService.GetFiletredAsync(
+                Category.SelectedIndex > 0 ? categories.Single(e => e.Name == Category.SelectedItem as string).Id.ToString() : "",
+                JobLevel.SelectedIndex > 0 ? jobLevels.Single(e => e.Level == JobLevel.SelectedItem as string).Id.ToString() : "",
+                TypeOfContract.SelectedIndex > 0 ? typeOfContracts.Single(e => e.Type == TypeOfContract.SelectedItem as string).Id.ToString() : "",
+                JobType.SelectedIndex > 0 ? jobTypes.Single(e => e.Type == JobType.SelectedItem as string).Id.ToString() : "",
+                WorkingShift.SelectedIndex > 0 ? workingShifts.Single(e => e.Shift == WorkingShift.SelectedItem as string).Id.ToString() : "",
+                Position.Text);
         Offers.Children.Clear();
         foreach (Models.Offer offer in offers)
         {
