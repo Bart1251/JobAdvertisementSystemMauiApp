@@ -50,6 +50,10 @@
                                 <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="UpdateOccupation"/>
                             </Label.GestureRecognizers>
                         </Label>
+                        <HorizontalStackLayout x:Name="AdminButtons">
+                            <Button TextColor="#EEEEEE" BackgroundColor="#222222" Margin="5" Clicked="AddOffer"/>
+                            <Button TextColor="#EEEEEE" BackgroundColor="#222222" Margin="5" Clicked="AddCompany"/>
+                        </HorizontalStackLayout>
                     </VerticalStackLayout>
 
                     <Grid RowSpacing="10" Margin="10" x:Name="PersonalInfo2">

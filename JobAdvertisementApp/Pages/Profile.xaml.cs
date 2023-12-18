@@ -401,6 +401,16 @@ public partial class Profile : ContentPage
         await Shell.Current.GoToAsync("//AddCourse");
     }
 
+    private async void AddOffer(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//AddOffer");
+    }
+
+    private async void AddCompany(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//AddCompany");
+    }
+
     private async void DeleteJobExperience(object sender, EventArgs e)
     {
         if (await jobExperienceApiService.DeleteAsync(((JobExperience)((Button)sender).BindingContext).Id.ToString()))

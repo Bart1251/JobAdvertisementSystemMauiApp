@@ -58,6 +58,11 @@ namespace JobAdvertisementAppAPI.Repositories
                 .Include(e => e.Category).ToList();
         }
 
+        public int GetNotExpiredOffersCount()
+        {
+            return dataContext.Offer.Where(e => e.Expires > DateTime.Now).Count();
+        }
+
         public bool Save()
         {
             return dataContext.SaveChanges() > 0;

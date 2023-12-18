@@ -24,7 +24,7 @@
                 </Label>
             </VerticalStackLayout>
             <HorizontalStackLayout Grid.Row="1" VerticalOptions="Center">
-                <Image MaximumHeightRequest="40"/>
+                <Image x:Name="CompanyLogo" MaximumHeightRequest="40"/>
                 <VerticalStackLayout>
                     <Label Text="{Binding Company.Name}" TextColor="#333333" FontSize="Small"/>
                     <Label Text="{Binding Company.Adress}" TextColor="#555555"/>

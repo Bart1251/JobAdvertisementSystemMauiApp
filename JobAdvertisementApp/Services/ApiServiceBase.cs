@@ -37,6 +37,21 @@ namespace JobAdvertisementApp.Services
             return result;
         }
 
+        public async virtual Task<int> GetCountAsync()
+        {
+            int result = 0;
+
+            HttpResponseMessage response = await httpClient.GetAsync(url + "/Count");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                result = JsonSerializer.Deserialize<int>(content, jsonSerialzierOptions);
+            }
+
+            return result;
+        }
+
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             IEnumerable<T> result = new List<T>();

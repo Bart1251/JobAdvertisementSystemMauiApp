@@ -6,6 +6,7 @@ namespace JobAdvertisementAppAPI.Interfaces
     {
         IEnumerable<Offer> GetOffers();
         IEnumerable<Offer> GetNotExpierdOffers();
+        int GetNotExpiredOffersCount();
         Offer? GetOffer(int id);
         bool CreateOffer(Offer offer);
         bool UpdateOffer(Offer offer);

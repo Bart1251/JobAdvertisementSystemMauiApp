@@ -36,5 +36,11 @@
     <ShellContent
         ContentTemplate="{DataTemplate pages:Offer}"
         Route="Offer" />
+    <ShellContent
+        ContentTemplate="{DataTemplate pages:AddOffer}"
+        Route="AddOffer" />
+    <ShellContent
+        ContentTemplate="{DataTemplate pages:AddCompany}"
+        Route="AddCompany" />
 
 </Shell>

@@ -124,6 +124,19 @@ namespace JobAdvertisementAppAPI.Controllers
             return Ok(offer);
         }
 
+        [HttpGet("Count")]
+        [ProducesResponseType(200, Type = typeof(int))]
+        [ProducesResponseType(400)]
+        public IActionResult GetOffersCount()
+        {
+            int offersCount = offerRepository.GetNotExpiredOffersCount();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(offersCount);
+        }
+
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

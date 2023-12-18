@@ -97,7 +97,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [HttpPost("images/{companyId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public IActionResult SaveUserProfileImage(string companyId)
+        public IActionResult SaveCompanyLogoImage(string companyId)
         {
             var company = companyRepository.GetCompany(int.Parse(companyId));
 
@@ -132,7 +132,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [HttpGet("images/{companyId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public IActionResult GetCompanyProfileImage(string companyId)
+        public IActionResult GetCompanyLogoImage(string companyId)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

@@ -19,12 +19,17 @@
         <controls:NavBar x:Name="NavBar" Grid.Row="0"/>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout HorizontalOptions="FillAndExpand">
-                <Image x:Name="Banner" Source="baner.png"/>
+                <Grid>
+                    <Image x:Name="Banner" Source="baner.png"/>
+                    <Frame x:Name="BannerTextFrame" BackgroundColor="#EEEEEE" CornerRadius="20" Padding="20" VerticalOptions="Center" HorizontalOptions="Center" BorderColor="Transparent">
+                        <Label x:Name="BannerText" Text="0 sprawdzonych ofert pracy" HorizontalOptions="Center" VerticalOptions="Center" TextColor="#222222" FontSize="Header" LineBreakMode="WordWrap" FontAttributes="Bold"/>
+                    </Frame>
+                </Grid>
                 <StackLayout x:Name="Row1" Orientation="Horizontal" Spacing="0" HorizontalOptions="Center" Padding="10">
                     <Entry x:Name="Position" Placeholder="Stanowisko" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="350" HeightRequest="60" VerticalTextAlignment="Center" Margin="1"/>
                     <Picker x:Name="Category" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="300" HeightRequest="60" VerticalTextAlignment="Center" Margin="1"/>
-                    <Entry x:Name="Location" IsEnabled="False" Placeholder="Lokalizacja" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="350" HeightRequest="60" VerticalTextAlignment="Center" Margin="1"/>
-                    <Picker x:Name="MaxDistance" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="300" HeightRequest="60" VerticalTextAlignment="Center" Margin="1">
+                    <Entry x:Name="Location" Placeholder="Lokalizacja" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="350" HeightRequest="60" VerticalTextAlignment="Center" Margin="1" TextChanged="LocationChanged"/>
+                    <Picker x:Name="MaxDistance" IsEnabled="False" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="300" HeightRequest="60" VerticalTextAlignment="Center" Margin="1">
                         <Picker.Items>
                             <x:String>10 km</x:String>
                             <x:String>20 km</x:String>
