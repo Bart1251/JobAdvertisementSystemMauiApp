@@ -1,16 +1,9 @@
 ﻿using AutoMapper;
-using GoogleMapsApi;
-using GoogleMapsApi.Entities.Geocoding.Request;
-using GoogleMapsApi.Entities.Geocoding.Response;
-using GoogleMapsApi.Entities.DistanceMatrix.Request;
-using GoogleMapsApi.Entities.DistanceMatrix.Response;
 using JobAdvertisementAppAPI.Dto;
 using JobAdvertisementAppAPI.Interfaces;
 using JobAdvertisementAppAPI.Models;
 using Microsoft.AspNetCore.Mvc;
-using Google.Maps;
 using Newtonsoft.Json.Linq;
-using System.Net;
 
 namespace JobAdvertisementAppAPI.Controllers
 {
@@ -43,22 +36,69 @@ namespace JobAdvertisementAppAPI.Controllers
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Offer>))]
         [ProducesResponseType(400)]
-        public IActionResult GetOffers(int? categoryId = null, int? jobLevelId = null, int? typeOfContractId = null, int? jobTypeId = null, int? workingShiftId = null, string? position = null)
+        public async Task<IActionResult> GetOffers(int? categoryId = null, int? jobLevelId = null, int? typeOfContractId = null, int? jobTypeId = null, int? workingShiftId = null, string? position = null, int? maxDistance = null, string? location = null)
         {
-            var offers = offerRepository.GetNotExpierdOffers();
+            List<Offer> offers = (List<Offer>)offerRepository.GetNotExpierdOffers();
             if (position != null)
-                offers = offers.Where(e => e.Position.ToLower().Contains(position.ToLower()));
+                offers = offers.Where(e => e.Position.ToLower().Contains(position.ToLower())).ToList();
             if (categoryId != null)
-                offers = offers.Where(e => e.Category.Id == categoryId);
+                offers = offers.Where(e => e.Category.Id == categoryId).ToList();
             if (jobLevelId != null)
-                offers = offers.Where(e => e.JobLevel.Id == jobLevelId);
+                offers = offers.Where(e => e.JobLevel.Id == jobLevelId).ToList();
             if (typeOfContractId != null)
-                offers = offers.Where(e => e.TypeOfContract.Id == typeOfContractId);
+                offers = offers.Where(e => e.TypeOfContract.Id == typeOfContractId).ToList();
             if (jobTypeId != null)
-                offers = offers.Where(e => e.JobType.Id == jobTypeId);
+                offers = offers.Where(e => e.JobType.Id == jobTypeId).ToList();
             if (workingShiftId != null)
-                offers = offers.Where(e => e.WorkingShift.Id == workingShiftId);
+                offers = offers.Where(e => e.WorkingShift.Id == workingShiftId).ToList();
 
+            if(maxDistance != null && location != null)
+            {
+                for (int i = 0; i < offers.Count();)
+                {
+                    if (string.IsNullOrEmpty(offers[i].Company.Location))
+                    {
+                        offers.RemoveAt(i);
+                        continue;
+                    }
+                    try
+                    {
+                        HttpClient client = new HttpClient();
+
+                        string url = $"http://dev.virtualearth.net/REST/v1/Locations?q={Uri.EscapeDataString(location)}&key=AsUeck_Ez--mXKxU6JpA3KZmTmvAuMDmEfYZuQ6gpeE0wmcFOynbPUnxHkk2Waqn";
+                        var response = await client.GetStringAsync(url);
+                        var json = JObject.Parse(response);
+                        var coordinates = json["resourceSets"][0]["resources"][0]["point"]["coordinates"];
+                        double latitude = (double)coordinates.First;
+                        double longitude = (double)coordinates.Last;
+
+                        double otherLatitude = double.Parse(offers[i].Company.Location.Split(";").First().Replace(".", ","));
+                        double otherLongitude = double.Parse(offers[i].Company.Location.Split(";").Last().Replace(".", ","));
+
+                        double R = 6371; // Promień Ziemi w km
+                        double dLat = (otherLatitude - latitude) * (Math.PI / 180);
+                        double dLon = (otherLongitude - longitude) * (Math.PI / 180);
+                        latitude *= (Math.PI / 180);
+                        otherLatitude *= (Math.PI / 180);
+
+                        double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                                   Math.Sin(dLon / 2) * Math.Sin(dLon / 2) * Math.Cos(latitude) * Math.Cos(otherLatitude);
+                        double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+                        double distance = R * c;
+
+                        if (distance > maxDistance)
+                            offers.RemoveAt(i);
+                        else
+                            i++;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("\nException Caught!");
+                        Console.WriteLine($"Message :{e.Message}");
+                    }
+                }
+            }
+            
             if (offers.Count() == 0)
                 return NotFound();
 

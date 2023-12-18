@@ -32,7 +32,7 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Grid.Row="0" MaximumHeightRequest="40" MaximumWidthRequest="40" Source="default_profile.jpg" VerticalOptions="Start"/>
+                            <Image x:Name="CompanyLogo" Grid.Column="0" Grid.Row="0" MaximumHeightRequest="40" MaximumWidthRequest="40" Source="default_profile.jpg" VerticalOptions="Start"/>
                             <VerticalStackLayout Grid.Column="1" Grid.Row="0">
                                 <Label Text="{Binding Position}" TextColor="#222222" FontSize="Medium" LineBreakMode="WordWrap"/>
                                 <Label Text="{Binding Company.Name}" TextColor="#444444" LineBreakMode="WordWrap"/>
@@ -147,6 +147,12 @@
                     <VerticalStackLayout Spacing="20">
                         <Label Text="O firmie" TextColor="#222222" FontSize="Medium"/>
                         <Label Text="{Binding Company.Description}" TextColor="#222222"/>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BorderColor="Transparent" BackgroundColor="#FFFFFF">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="Lokalizacja" TextColor="#222222" FontSize="Medium"/>
+                        <Image x:Name="Location" MaximumHeightRequest="600" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                 </Frame>
             </VerticalStackLayout>

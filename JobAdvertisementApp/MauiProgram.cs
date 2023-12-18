@@ -33,8 +33,9 @@ public static class MauiProgram
 		builder.Services.AddSingleton<CompanyApiService>();
 		builder.Services.AddSingleton<OfferApiService>();
         builder.Services.AddSingleton<PasswordHasher>();
+        builder.Services.AddSingleton<MapService>();
 
-		builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<Login>();
 		builder.Services.AddSingleton<Register>();
 		builder.Services.AddTransient<Profile>();

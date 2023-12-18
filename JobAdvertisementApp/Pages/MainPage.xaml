@@ -23,6 +23,16 @@
                 <StackLayout x:Name="Row1" Orientation="Horizontal" Spacing="0" HorizontalOptions="Center" Padding="10">
                     <Entry x:Name="Position" Placeholder="Stanowisko" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="350" HeightRequest="60" VerticalTextAlignment="Center" Margin="1"/>
                     <Picker x:Name="Category" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="300" HeightRequest="60" VerticalTextAlignment="Center" Margin="1"/>
+                    <Entry x:Name="Location" IsEnabled="False" Placeholder="Lokalizacja" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="350" HeightRequest="60" VerticalTextAlignment="Center" Margin="1"/>
+                    <Picker x:Name="MaxDistance" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="300" HeightRequest="60" VerticalTextAlignment="Center" Margin="1">
+                        <Picker.Items>
+                            <x:String>10 km</x:String>
+                            <x:String>20 km</x:String>
+                            <x:String>30 km</x:String>
+                            <x:String>50 km</x:String>
+                            <x:String>100 km</x:String>
+                        </Picker.Items>
+                    </Picker>
                 </StackLayout>
                 <StackLayout x:Name="Row2" Orientation="Horizontal" Spacing="0" HorizontalOptions="Center" Padding="10">
                     <Picker x:Name="JobLevel" BackgroundColor="#222222" TextColor="#CCCCCC" FontSize="Medium" WidthRequest="240" VerticalOptions="Center" HeightRequest="50" Margin="1"/>

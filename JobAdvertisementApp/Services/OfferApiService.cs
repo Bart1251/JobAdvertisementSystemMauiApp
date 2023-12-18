@@ -15,11 +15,11 @@ namespace JobAdvertisementApp.Services
 
         }
 
-        public virtual async Task<IEnumerable<Offer>> GetFiletredAsync(string categoryId, string jobLevelId, string typeOfContractId, string jobTypeId, string workingShiftId, string position = "")
+        public virtual async Task<IEnumerable<Offer>> GetFiletredAsync(string categoryId, string jobLevelId, string typeOfContractId, string jobTypeId, string workingShiftId, string position = "", string maxDistance = "", string location = "")
         {
             IEnumerable<Offer> result = new List<Offer>();
 
-            HttpResponseMessage response = await httpClient.GetAsync($"{url}?categoryId={categoryId}&jobLevelId={jobLevelId}&typeOfContractId={typeOfContractId}&jobTypeId={jobTypeId}&workingShiftId={workingShiftId}&position={position}");
+            HttpResponseMessage response = await httpClient.GetAsync($"{url}?categoryId={categoryId}&jobLevelId={jobLevelId}&typeOfContractId={typeOfContractId}&jobTypeId={jobTypeId}&workingShiftId={workingShiftId}&position={position}&maxDistance={maxDistance}&location={location}");
 
             if (response.IsSuccessStatusCode)
             {

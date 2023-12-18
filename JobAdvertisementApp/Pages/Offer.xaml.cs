@@ -8,12 +8,14 @@ namespace JobAdvertisementApp.Pages;
 public partial class Offer : ContentPage, IQueryAttributable
 {
     private readonly OfferApiService offerApiService;
+    private readonly MapService mapService;
     private Models.Offer offer;
     private string offerId = "";
-	public Offer(OfferApiService offerApiService)
+	public Offer(OfferApiService offerApiService, MapService mapService)
 	{
 		InitializeComponent();
         this.offerApiService = offerApiService;
+        this.mapService = mapService;
     }
 
     protected override void OnAppearing()
@@ -27,9 +29,13 @@ public partial class Offer : ContentPage, IQueryAttributable
     {
         offer = await offerApiService.GetAsync(offerId);
         this.BindingContext = offer;
+        byte[] imageBytes = await offerApiService.GetImage(offer.Id.ToString());
+        if (imageBytes != null)
+            CompanyLogo.Source = ImageSource.FromStream(() => new MemoryStream(imageBytes));
         BindableLayout.SetItemsSource(Responsibilities, offer.Responsibilities.Split(";"));
         BindableLayout.SetItemsSource(Requirements, offer.Requirements.Split(";"));
         BindableLayout.SetItemsSource(Benefits, offer.Benefits.Split(";"));
+        Location.Source = await mapService.GetMapImageAsync(offer.Company.Location.Split(";").First() + "," + offer.Company.Location.Split(";").Last());
     }
 
     private void PageSizeChanged(object sender, EventArgs e)

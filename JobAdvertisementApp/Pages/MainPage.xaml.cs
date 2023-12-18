@@ -42,7 +42,9 @@ public partial class MainPage : ContentPage
                 TypeOfContract.SelectedIndex > 0 ? ((Models.TypeOfContract)TypeOfContract.SelectedItem).Id.ToString() : "",
                 JobType.SelectedIndex > 0 ? ((Models.JobType)JobType.SelectedItem).Id.ToString() : "",
                 WorkingShift.SelectedIndex > 0 ? ((Models.WorkingShift)WorkingShift.SelectedItem).Id.ToString() : "",
-                Position.Text);
+                Position.Text,
+                MaxDistance.SelectedItem.ToString().Replace("km", "").Trim(),
+                Location.Text);
         else
             offers = await offerApiService.GetFiletredAsync(
                 Category.SelectedIndex > 0 ? categories.Single(e => e.Name == Category.SelectedItem as string).Id.ToString() : "",
@@ -50,7 +52,9 @@ public partial class MainPage : ContentPage
                 TypeOfContract.SelectedIndex > 0 ? typeOfContracts.Single(e => e.Type == TypeOfContract.SelectedItem as string).Id.ToString() : "",
                 JobType.SelectedIndex > 0 ? jobTypes.Single(e => e.Type == JobType.SelectedItem as string).Id.ToString() : "",
                 WorkingShift.SelectedIndex > 0 ? workingShifts.Single(e => e.Shift == WorkingShift.SelectedItem as string).Id.ToString() : "",
-                Position.Text);
+                Position.Text,
+                MaxDistance.SelectedItem.ToString().Replace("km", "").Trim(),
+                Location.Text);
         Offers.Children.Clear();
         foreach (Models.Offer offer in offers)
         {
@@ -98,6 +102,8 @@ public partial class MainPage : ContentPage
             }
             Position.WidthRequest = 350;
             Category.WidthRequest = 300;
+            Location.WidthRequest = 350;
+            MaxDistance.WidthRequest = 200;
         }
         ((IView)Row1).InvalidateMeasure();
         ((IView)Row2).InvalidateMeasure();
@@ -118,27 +124,28 @@ public partial class MainPage : ContentPage
         categories.AddRange(await categoryApiService.GetAllAsync());
         Category.ItemsSource = categories;
         if (DeviceInfo.Platform != DevicePlatform.Android) Category.ItemsSource = Category.GetItemsAsArray();
-        Category.SelectedIndex = 0;
         workingShifts = new List<WorkingShift>() { new WorkingShift() { Id = 0, Shift = "Wymiar pracy" } };
         workingShifts.AddRange(await workingShiftApiService.GetAllAsync());
         WorkingShift.ItemsSource = workingShifts;
         if (DeviceInfo.Platform != DevicePlatform.Android) WorkingShift.ItemsSource = WorkingShift.GetItemsAsList();
-        WorkingShift.SelectedIndex = 0;
         typeOfContracts = new List<TypeOfContract>() { new TypeOfContract() { Id = 0, Type = "Rodzaj umowy" } };
         typeOfContracts.AddRange(await typeOfContractApiService.GetAllAsync());
         TypeOfContract.ItemsSource = typeOfContracts;
         if (DeviceInfo.Platform != DevicePlatform.Android) TypeOfContract.ItemsSource = TypeOfContract.GetItemsAsArray();
-        TypeOfContract.SelectedIndex = 0;
         jobTypes = new List<JobType>() { new JobType() { Id = 0, Type = "Tryb pracy" } };
         jobTypes.AddRange(await jobTypeApiService.GetAllAsync());
         JobType.ItemsSource = jobTypes;
         if (DeviceInfo.Platform != DevicePlatform.Android) JobType.ItemsSource = JobType.GetItemsAsArray();
-        JobType.SelectedIndex = 0;
         jobLevels = new List<JobLevel>() { new JobLevel() { Id = 0, Level = "Poziom stanowiska" } };
         jobLevels.AddRange(await jobLevelApiService.GetAllAsync());
         JobLevel.ItemsSource = jobLevels;
         if(DeviceInfo.Platform != DevicePlatform.Android) JobLevel.ItemsSource = JobLevel.GetItemsAsArray();
+        Category.SelectedIndex = 0;
+        WorkingShift.SelectedIndex = 0;
+        TypeOfContract.SelectedIndex = 0;
+        JobType.SelectedIndex = 0;
         JobLevel.SelectedIndex = 0;
+        MaxDistance.SelectedIndex = 3;
     }
 
     private async void GetOffers()
