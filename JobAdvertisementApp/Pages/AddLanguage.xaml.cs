@@ -14,7 +14,7 @@ public partial class AddLanguage : ContentPage
         SetPickers();
     }
 
-    private async Task SetPickers()
+    private async void SetPickers()
     {
         LanguageLevel.ItemsSource = Enum.GetValues(typeof(LanguageLevel));
         List<Language> languages = (List<Language>)await languageApiService.GetAllAsync();
@@ -30,7 +30,7 @@ public partial class AddLanguage : ContentPage
             }
         }
         LanguageName.ItemsSource = languages;
-        if(DeviceInfo.Platform == DevicePlatform.Android) LanguageName.ItemsSource = LanguageName.GetItemsAsArray();
+        if(DeviceInfo.Platform != DevicePlatform.Android) LanguageName.ItemsSource = LanguageName.GetItemsAsArray();
     }
 
     private async void GoBack(object sender, EventArgs e)

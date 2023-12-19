@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JobAdvertisementApp.Pages.AdminPanel"
+             xmlns:controls="clr-namespace:JobAdvertisementApp.Controls"
+             Title="AdminPanel"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#EEEEEE">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"/>
+    </Shell.BackButtonBehavior>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <controls:NavBar x:Name="NavBar" Grid.Row="0"/>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="Firmy" TextColor="#222222" FontSize="Large"  FontAttributes="Bold" Margin="10"/>
+                    <Button Text="+" TextColor="#EEEEEE" BackgroundColor="CadetBlue" WidthRequest="30" HeightRequest="30" Padding="5" Clicked="AddCompany"/>
+                </HorizontalStackLayout>
+                <VerticalStackLayout x:Name="Companies">
+                    
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

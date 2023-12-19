@@ -38,7 +38,7 @@ public partial class Offer : ContentPage, IQueryAttributable
         BindableLayout.SetItemsSource(Responsibilities, offer.Responsibilities.Split(";"));
         BindableLayout.SetItemsSource(Requirements, offer.Requirements.Split(";"));
         BindableLayout.SetItemsSource(Benefits, offer.Benefits.Split(";"));
-        Location.Source = await mapService.GetMapImageAsync(offer.Company.Location.Split(";").First() + "," + offer.Company.Location.Split(";").Last());
+        Location.Source = await mapService.GetMapImageAsync(offer.Company.Location.Split(";").First().Replace(",", ".") + "," + offer.Company.Location.Split(";").Last().Replace(",", "."));
     }
 
     private void PageSizeChanged(object sender, EventArgs e)

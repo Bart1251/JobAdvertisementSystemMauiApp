@@ -28,7 +28,7 @@ public partial class AddJobExperience : ContentPage
 
 	private void AddResponsibility(object sender, EventArgs e)
 	{
-		if (!string.IsNullOrEmpty(Responsibility.Text) && !responsibilities.Contains(Responsibility.Text) && !responsibilities.Any(e => e.Contains(";")))
+		if (!string.IsNullOrEmpty(Responsibility.Text) && !responsibilities.Contains(Responsibility.Text) && !Responsibility.Text.Contains(";"))
 		{
 			responsibilities.Add(Responsibility.Text);
 			((IView)MainGrid).InvalidateMeasure();

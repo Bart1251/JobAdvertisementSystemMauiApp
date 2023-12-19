@@ -4,6 +4,7 @@ using JobAdvertisementAppAPI.Interfaces;
 using JobAdvertisementAppAPI.Models;
 using JobAdvertisementAppAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace JobAdvertisementAppAPI.Controllers
 {
@@ -55,9 +56,23 @@ namespace JobAdvertisementAppAPI.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateCompany([FromBody] CompanyDto company)
+        public async Task<IActionResult> CreateCompany([FromBody] CompanyDto company)
         {
             Company companyMap = mapper.Map<Company>(company);
+            try
+            {
+                HttpClient client = new HttpClient();
+                string url = $"http://dev.virtualearth.net/REST/v1/Locations?q={Uri.EscapeDataString(companyMap.Adress)}&key=AsUeck_Ez--mXKxU6JpA3KZmTmvAuMDmEfYZuQ6gpeE0wmcFOynbPUnxHkk2Waqn";
+                var response = await client.GetStringAsync(url);
+                var json = JObject.Parse(response);
+                var coordinates = json["resourceSets"][0]["resources"][0]["point"]["coordinates"];
+                companyMap.Location = coordinates.First + ";" + coordinates.Last;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine($"Message :{e.Message}");
+            }
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

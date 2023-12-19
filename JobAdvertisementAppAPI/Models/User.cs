@@ -13,6 +13,7 @@
         public string? Occupation { get; set; }
         public string? CareerSummary { get; set; }
         public string? Skills { get; set; }
+        public bool IsAdmin { get; set; } = false;
 
 
         public ICollection<JobExperience>? JobExperiences { get; set; }

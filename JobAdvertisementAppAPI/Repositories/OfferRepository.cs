@@ -30,6 +30,17 @@ namespace JobAdvertisementAppAPI.Repositories
                 .Include(e => e.Category).FirstOrDefault();
         }
 
+        public IEnumerable<Offer> GetOffersFromCompany(int id)
+        {
+            return dataContext.Offer.Where(e => e.Company.Id == id)
+                .Include(e => e.Company)
+                .Include(e => e.JobLevel)
+                .Include(e => e.TypeOfContract)
+                .Include(e => e.JobType)
+                .Include(e => e.WorkingShift)
+                .Include(e => e.Category);
+        }
+
         public bool DeleteOffer(Offer offer)
         {
             dataContext.Offer.Remove(offer);

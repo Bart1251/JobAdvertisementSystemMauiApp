@@ -124,6 +124,22 @@ namespace JobAdvertisementAppAPI.Controllers
             return Ok(offer);
         }
 
+        [HttpGet("Company/{companyId}")]
+        [ProducesResponseType(200, Type = typeof(Offer))]
+        [ProducesResponseType(400)]
+        public IActionResult GetOffersFromCompany(int companyId)
+        {
+            var offers = offerRepository.GetOffersFromCompany(companyId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (offers == null)
+                return NotFound();
+
+            return Ok(offers);
+        }
+
         [HttpGet("Count")]
         [ProducesResponseType(200, Type = typeof(int))]
         [ProducesResponseType(400)]

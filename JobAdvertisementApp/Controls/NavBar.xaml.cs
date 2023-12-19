@@ -16,9 +16,13 @@ public partial class NavBar : ContentView
         {
             UserButton.Text = "Zaloguj siê";
         }
-        else if(Shell.Current.CurrentPage.GetType() == typeof(Profile))
+        else if(Shell.Current.CurrentPage.GetType() == typeof(Profile) || Shell.Current.CurrentPage.GetType() == typeof(AdminPanel))
 		{
 			UserButton.Text = "Wyloguj siê";
+		}
+		else if(App.LoggedUser.IsAdmin == true)
+		{
+			UserButton.Text = "Admin panel";
 		}
 		else
         {
@@ -33,13 +37,17 @@ public partial class NavBar : ContentView
 		{
 			await Shell.Current.GoToAsync("//Login");
 		}
-		else if (Shell.Current.CurrentPage.GetType() == typeof(Profile))
+		else if (Shell.Current.CurrentPage.GetType() == typeof(Profile) || Shell.Current.CurrentPage.GetType() == typeof(AdminPanel))
 		{
 			App.LoggedUser = null;
 			await Shell.Current.GoToAsync("//MainPage");
 		}
-		else
+        else if (App.LoggedUser.IsAdmin == true)
 		{
+            await Shell.Current.GoToAsync("//AdminPanel");
+        }
+		else
+        {
 			await Shell.Current.GoToAsync("//Profile");
 		}
 	}

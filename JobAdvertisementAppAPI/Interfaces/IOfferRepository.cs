@@ -5,6 +5,7 @@ namespace JobAdvertisementAppAPI.Interfaces
     public interface IOfferRepository
     {
         IEnumerable<Offer> GetOffers();
+        IEnumerable<Offer> GetOffersFromCompany(int id);
         IEnumerable<Offer> GetNotExpierdOffers();
         int GetNotExpiredOffersCount();
         Offer? GetOffer(int id);
