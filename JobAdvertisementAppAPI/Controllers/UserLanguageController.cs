@@ -27,8 +27,8 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(400)]
         public IActionResult CreateLanguage(int userId, int languageId)
         {
-            var user = userRepository.GetUsers().Where(e => e.Id == userId).First();
-            var language = languageRepository.GetLanguages().Where(e => e.Id == languageId).First();
+            var user = userRepository.GetUsers().Where(e => e.Id == userId).FirstOrDefault();
+            var language = languageRepository.GetLanguages().Where(e => e.Id == languageId).FirstOrDefault();
 
             if (user == null || language == null)
                 return NotFound();
@@ -59,7 +59,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(404)]
         public IActionResult DeleteLanguage(int userId, int languageId)
         {
-            var userLanguage = userLanguageRepository.GetLanguages().Where(e => e.UserId == userId && e.LanguageId == languageId).First();
+            var userLanguage = userLanguageRepository.GetLanguages().Where(e => e.UserId == userId && e.LanguageId == languageId).FirstOrDefault();
 
             if (userLanguage == null)
                 return NotFound();

@@ -60,7 +60,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(404)]
         public IActionResult DeleteTypeOfContract(int typeOfContractId)
         {
-            var typeOfContract = typeOfContractRepository.GetTypeOfContracts().Where(e => e.Id == typeOfContractId).First();
+            var typeOfContract = typeOfContractRepository.GetTypeOfContracts().Where(e => e.Id == typeOfContractId).FirstOrDefault();
 
             if (typeOfContract == null)
                 return NotFound();

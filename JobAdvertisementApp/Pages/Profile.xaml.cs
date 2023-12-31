@@ -13,12 +13,13 @@ public partial class Profile : ContentPage
     private readonly JobExperienceApiService jobExperienceApiService;
     private readonly EducationApiService educationApiService;
     private readonly CourseApiService courseApiService;
-
+    private readonly CompanyApiService companyApiService;
+    private readonly OfferApiService offerApiService;
     private ObservableCollection<Models.Profile> profiles = new ObservableCollection<Models.Profile>();
 	private ObservableCollection<Language> languages = new ObservableCollection<Language>();
 	private ObservableCollection<string> skills = new ObservableCollection<string>();
 
-    public Profile(UserApiService userApiService, ProfileApiService profileApiService, LanguageApiService languageApiService, JobExperienceApiService jobExperienceApiService, EducationApiService educationApiService, CourseApiService courseApiService)
+    public Profile(UserApiService userApiService, ProfileApiService profileApiService, LanguageApiService languageApiService, JobExperienceApiService jobExperienceApiService, EducationApiService educationApiService, CourseApiService courseApiService, CompanyApiService companyApiService, OfferApiService offerApiService)
 	{
 		InitializeComponent();
 		this.userApiService = userApiService;
@@ -27,7 +28,9 @@ public partial class Profile : ContentPage
         this.jobExperienceApiService = jobExperienceApiService;
         this.educationApiService = educationApiService;
         this.courseApiService = courseApiService;
-	}
+        this.companyApiService = companyApiService;
+        this.offerApiService = offerApiService;
+    }
 
     protected override void OnAppearing()
     {
@@ -91,7 +94,43 @@ public partial class Profile : ContentPage
         await GetJobExperiences();
         await GetEducations();
         await GetCourses();
+        await GetApplications();
+        await GetSavedOffers();
         UpdateLayout();
+    }
+
+    private async Task GetApplications()
+    {
+        Applications.Children.Clear();
+        foreach (Models.Offer offer in await offerApiService.GetAllFromUserAsync(App.LoggedUser.Id.ToString()))
+        {
+            byte[] imageBytes = await companyApiService.GetImage(offer.Company.Id.ToString());
+            if (imageBytes != null)
+                Applications.Children.Add(new OfferTile(offer, ImageSource.FromStream(() => new MemoryStream(imageBytes))));
+            else
+                Applications.Children.Add(new OfferTile(offer, null));
+        }
+    }
+
+    private async Task GetSavedOffers()
+    {
+        SavedOffers.Children.Clear();
+        string path = Path.Combine(FileSystem.AppDataDirectory, "savedOffers/" + App.LoggedUser.Id.ToString() + ".txt");
+        string directory = Path.Combine(FileSystem.AppDataDirectory, "savedOffers");
+        if (!Directory.Exists(directory))
+            Directory.CreateDirectory(directory);
+        if (!File.Exists(path))
+            using (var stream = File.Create(path)) { }
+        string[] content = File.ReadAllLines(path);
+        foreach(string line in content)
+        {
+            Models.Offer offer = await offerApiService.GetAsync(line);
+            byte[] imageBytes = await companyApiService.GetImage(offer.Company.Id.ToString());
+            if (imageBytes != null)
+                SavedOffers.Children.Add(new OfferTile(offer, ImageSource.FromStream(() => new MemoryStream(imageBytes))));
+            else
+                SavedOffers.Children.Add(new OfferTile(offer, null));
+        }
     }
 
     private async Task GetJobExperiences()

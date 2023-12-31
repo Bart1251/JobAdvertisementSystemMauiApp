@@ -92,7 +92,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(404)]
         public IActionResult DeleteCompany(int companyId)
         {
-            var company = companyRepository.GetCompanies().Where(e => e.Id == companyId).First();
+            var company = companyRepository.GetCompanies().Where(e => e.Id == companyId).FirstOrDefault();
 
             if (company == null)
                 return NotFound();

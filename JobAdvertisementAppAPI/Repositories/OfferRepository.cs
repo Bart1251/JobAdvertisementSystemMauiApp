@@ -41,6 +41,20 @@ namespace JobAdvertisementAppAPI.Repositories
                 .Include(e => e.Category);
         }
 
+        public IEnumerable<Offer> GetOffersUserApplied(int id)
+        {
+            return dataContext.User
+                .Where(u => u.Id == id)
+                .SelectMany(u => u.UserOffers.Select(uo => uo.Offer))
+                .Include(o => o.Company)
+                .Include(o => o.JobLevel)
+                .Include(o => o.TypeOfContract)
+                .Include(o => o.JobType)
+                .Include(o => o.WorkingShift)
+                .Include(o => o.Category)
+                .ToList();
+        }
+
         public bool DeleteOffer(Offer offer)
         {
             dataContext.Offer.Remove(offer);

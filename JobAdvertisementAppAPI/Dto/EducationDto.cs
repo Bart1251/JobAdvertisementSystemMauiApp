@@ -1,4 +1,6 @@
-﻿namespace JobAdvertisementAppAPI.Dto
+﻿using JobAdvertisementAppAPI.Models;
+
+namespace JobAdvertisementAppAPI.Dto
 {
     public class EducationDto
     {
@@ -9,13 +11,5 @@
         public string? FieldOfStudy { get; set; }
         public DateTime PeriodOfEducationStart { get; set; }
         public DateTime PeriodOfEducationEnd { get; set; }
-    }
-
-    public enum EducationLevel
-    {
-        Poziom1,
-        Poziom2,
-        Poziom3,
-        Poziom4
     }
 }

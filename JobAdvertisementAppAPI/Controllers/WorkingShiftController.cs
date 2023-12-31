@@ -60,7 +60,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(404)]
         public IActionResult DeleteWorkingShift(int workingShiftId)
         {
-            var workingShift = workingShiftRepository.GetWorkingShifts().Where(e => e.Id == workingShiftId).First();
+            var workingShift = workingShiftRepository.GetWorkingShifts().Where(e => e.Id == workingShiftId).FirstOrDefault();
 
             if (workingShift == null)
                 return NotFound();

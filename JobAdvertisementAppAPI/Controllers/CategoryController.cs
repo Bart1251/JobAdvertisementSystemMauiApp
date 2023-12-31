@@ -62,7 +62,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(404)]
         public IActionResult DeleteCategory(int categoryId)
         {
-            var category = categoryRepository.GetCategories().Where(e => e.Id == categoryId).First();
+            var category = categoryRepository.GetCategories().Where(e => e.Id == categoryId).FirstOrDefault();
 
             if (category == null)
                 return NotFound();

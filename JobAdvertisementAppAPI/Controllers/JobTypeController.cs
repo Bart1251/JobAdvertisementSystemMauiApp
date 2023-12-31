@@ -60,7 +60,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(404)]
         public IActionResult DeleteJobType(int jobTypeId)
         {
-            var jobType = jobTypeRepository.GetJobTypes().Where(e => e.Id == jobTypeId).First();
+            var jobType = jobTypeRepository.GetJobTypes().Where(e => e.Id == jobTypeId).FirstOrDefault();
 
             if (jobType == null)
                 return NotFound();

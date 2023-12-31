@@ -31,7 +31,7 @@ public partial class AdminPanel : ContentPage
 		{
 			Companies.Children.Add(
 				new CompanyView(company, 
-					(List<Models.Offer>) await offerApiService.GetAllFromIdAsync(company.Id.ToString()),
+					(List<Models.Offer>) await offerApiService.GetAllFromCompanyAsync(company.Id.ToString()),
 					DeleteCompany,
 					DeleteOffer,
 					AddOffer
@@ -41,7 +41,7 @@ public partial class AdminPanel : ContentPage
 
 	private async void DeleteCompany(object sender, EventArgs e)
 	{
-        foreach(Models.Offer offer in await offerApiService.GetAllFromIdAsync(((Company)((Button)sender).CommandParameter).Id.ToString()))
+        foreach(Models.Offer offer in await offerApiService.GetAllFromCompanyAsync(((Company)((Button)sender).CommandParameter).Id.ToString()))
 			await offerApiService.DeleteAsync(offer.Id.ToString());
 
         await companyApiService.DeleteAsync(((Company)((Button)sender).CommandParameter).Id.ToString());

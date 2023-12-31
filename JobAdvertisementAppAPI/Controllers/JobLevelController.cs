@@ -20,11 +20,11 @@ namespace JobAdvertisementAppAPI.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<JobLevelDto>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<JobLevel>))]
         [ProducesResponseType(400)]
         public IActionResult GetJobLevels()
         {
-            var jobLevels = mapper.Map<IEnumerable<JobLevelDto>>(jobLevelRepository.GetJobLevels());
+            var jobLevels = mapper.Map<IEnumerable<JobLevel>>(jobLevelRepository.GetJobLevels());
 
             if (jobLevels.Count() == 0)
                 return NotFound();
@@ -38,7 +38,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateJobLevel([FromBody] JobLevelDto jobLevel)
+        public IActionResult CreateJobLevel([FromBody] JobLevel jobLevel)
         {
             JobLevel jobLevelMap = mapper.Map<JobLevel>(jobLevel);
 
@@ -60,7 +60,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(404)]
         public IActionResult DeleteJobLevel(int jobLevelId)
         {
-            var jobLevel = jobLevelRepository.GetJobLevels().Where(e => e.Id == jobLevelId).First();
+            var jobLevel = jobLevelRepository.GetJobLevels().Where(e => e.Id == jobLevelId).FirstOrDefault();
 
             if (jobLevel == null)
                 return NotFound();

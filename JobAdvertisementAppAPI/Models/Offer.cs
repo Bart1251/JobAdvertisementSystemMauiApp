@@ -22,5 +22,6 @@
         public JobType? JobType { get; set; }
         public WorkingShift? WorkingShift { get; set; }
         public Category? Category { get; set; }
+        public ICollection<UserOffer>? UserOffers { get; set; }
     }
 }

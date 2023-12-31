@@ -14,5 +14,21 @@ namespace JobAdvertisementApp.Services
         {
 
         }
+
+        public async Task<bool> UserAddOfferAsync(string userId, string offerId)
+        {
+            HttpResponseMessage response = await httpClient.PostAsync(baseAddress + "/api/UserOffer/" + userId + "/" + offerId, new StringContent(""));
+
+            if (response.IsSuccessStatusCode) return true;
+            return false;
+        }
+
+        public async Task<bool> UserDeleteOfferAsync(string userId, string offerId)
+        {
+            HttpResponseMessage response = await httpClient.DeleteAsync(baseAddress + "/api/UserOffer/" + userId + "/" + offerId);
+
+            if (response.IsSuccessStatusCode) return true;
+            return false;
+        }
     }
 }

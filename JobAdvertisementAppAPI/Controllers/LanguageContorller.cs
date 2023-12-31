@@ -76,7 +76,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(404)]
         public IActionResult DeleteLanguage(int languageId)
         {
-            var language = languageRepository.GetLanguages().Where(e => e.Id == languageId).First();
+            var language = languageRepository.GetLanguages().Where(e => e.Id == languageId).FirstOrDefault();
 
             if (language == null)
                 return NotFound();

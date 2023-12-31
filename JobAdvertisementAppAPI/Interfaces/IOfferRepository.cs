@@ -12,6 +12,7 @@ namespace JobAdvertisementAppAPI.Interfaces
         bool CreateOffer(Offer offer);
         bool UpdateOffer(Offer offer);
         bool DeleteOffer(Offer offer);
+        IEnumerable<Offer> GetOffersUserApplied(int id);
         bool Save();
     }
 }

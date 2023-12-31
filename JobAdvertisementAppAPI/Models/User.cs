@@ -21,5 +21,6 @@
         public ICollection<Profile>? Profiles { get; set; }
         public ICollection<Course>? Courses { get; set; }
         public ICollection<UserLanguage>? UserLanguages { get; set; }
+        public ICollection<UserOffer>? UserOffers { get; set; }
     }
 }

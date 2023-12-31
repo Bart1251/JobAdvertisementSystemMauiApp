@@ -2,6 +2,7 @@
 using JobAdvertisementAppAPI.Dto;
 using JobAdvertisementAppAPI.Interfaces;
 using JobAdvertisementAppAPI.Models;
+using JobAdvertisementAppAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
@@ -72,7 +73,7 @@ namespace JobAdvertisementAppAPI.Controllers
                         double latitude = (double)coordinates.First;
                         double longitude = (double)coordinates.Last;
 
-                        double otherLatitude = double.Parse(offers[i].Company.Location.Split(";").First().Replace(".", ","));
+                        double otherLatitude = double.Parse(offers[i].Company.Location.Split(";").FirstOrDefault().Replace(".", ","));
                         double otherLongitude = double.Parse(offers[i].Company.Location.Split(";").Last().Replace(".", ","));
 
                         double R = 6371; // Promień Ziemi w km
@@ -124,8 +125,24 @@ namespace JobAdvertisementAppAPI.Controllers
             return Ok(offer);
         }
 
+        [HttpGet("User/{userId}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Offer>))]
+        [ProducesResponseType(400)]
+        public IActionResult GetOffersUserApplied(int userId)
+        {
+            var offers = offerRepository.GetOffersUserApplied(userId);
+
+            if (offers.Count() == 0)
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(offers);
+        }
+
         [HttpGet("Company/{companyId}")]
-        [ProducesResponseType(200, Type = typeof(Offer))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Offer>))]
         [ProducesResponseType(400)]
         public IActionResult GetOffersFromCompany(int companyId)
         {

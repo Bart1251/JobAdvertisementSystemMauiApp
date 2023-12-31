@@ -23,6 +23,7 @@ namespace JobAdvertisementAppAPI.Data
         public DbSet<TypeOfContract> TypeOfContract { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserLanguage> UserLanguage { get; set; }
+        public DbSet<UserOffer> UserOffer { get; set; }
         public DbSet<WorkingShift> WorkingShift { get; set; }
 
 
@@ -31,6 +32,10 @@ namespace JobAdvertisementAppAPI.Data
             modelBuilder.Entity<UserLanguage>().HasKey(ul => new { ul.UserId, ul.LanguageId });
             modelBuilder.Entity<UserLanguage>().HasOne(u => u.User).WithMany(ul => ul.UserLanguages).HasForeignKey(u => u.UserId);
             modelBuilder.Entity<UserLanguage>().HasOne(l => l.Language).WithMany(ul => ul.UserLanguages).HasForeignKey(l => l.LanguageId);
+
+            modelBuilder.Entity<UserOffer>().HasKey(uo => new { uo.UserId, uo.OfferId });
+            modelBuilder.Entity<UserOffer>().HasOne(u => u.User).WithMany(uo => uo.UserOffers).HasForeignKey(u => u.UserId);
+            modelBuilder.Entity<UserOffer>().HasOne(o => o.Offer).WithMany(uo => uo.UserOffers).HasForeignKey(o => o.OfferId);
         }
     }
 }

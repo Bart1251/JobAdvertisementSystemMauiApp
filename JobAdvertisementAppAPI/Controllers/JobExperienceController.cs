@@ -42,7 +42,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(400)]
         public IActionResult CreateJobExperiences(int userId, [FromBody] JobExpirienceDto jobExperience)
         {
-            var user = userRepository.GetUsers().Where(e => e.Id == userId).First();
+            var user = userRepository.GetUsers().Where(e => e.Id == userId).FirstOrDefault();
 
             if (user == null)
                 return NotFound();
@@ -68,7 +68,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(404)]
         public IActionResult DeleteProfile(int jobExperienceId)
         {
-            var jobExperience = jobExperienceRepository.GetJobExperiences().Where(e => e.Id == jobExperienceId).First();
+            var jobExperience = jobExperienceRepository.GetJobExperiences().Where(e => e.Id == jobExperienceId).FirstOrDefault();
 
             if (jobExperience == null)
                 return NotFound();

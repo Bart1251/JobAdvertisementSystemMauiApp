@@ -22,6 +22,7 @@ builder.Services.AddScoped<ITypeOfContractRepository, TypeOfContractRepository>(
 builder.Services.AddScoped<IWorkingShiftRepository, WorkingShiftRepository>();
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<IOfferRepository, OfferRepository>();
+builder.Services.AddScoped<IUserOfferRepository, UserOfferRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

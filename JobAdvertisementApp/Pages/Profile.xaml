@@ -177,6 +177,28 @@
                         <Button Text="+" TextColor="#EEEEEE" BackgroundColor="CadetBlue" WidthRequest="30" HeightRequest="30" Padding="5" VerticalOptions="Center" Clicked="AddCourse"/>
                     </HorizontalStackLayout>
                     <VerticalStackLayout x:Name="Courses"></VerticalStackLayout>
+                    <Line BackgroundColor="LightGray"/>
+                    <HorizontalStackLayout Spacing="20">
+                        <Label Text="Moje aplikacje" TextColor="CadetBlue" FontSize="Medium" FontAttributes="Bold"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Applications">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+                    <Line BackgroundColor="LightGray"/>
+                    <HorizontalStackLayout Spacing="20">
+                        <Label Text="Zapisane oferty" TextColor="CadetBlue" FontSize="Medium" FontAttributes="Bold"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="SavedOffers">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
             </Grid>
         </VerticalStackLayout>

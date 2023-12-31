@@ -43,7 +43,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(400)]
         public IActionResult CreateEducation(int userId, [FromBody] EducationDto education)
         {
-            var user = userRepository.GetUsers().Where(e => e.Id == userId).First();
+            var user = userRepository.GetUsers().Where(e => e.Id == userId).FirstOrDefault();
 
             if (user == null)
                 return NotFound();
@@ -69,7 +69,7 @@ namespace JobAdvertisementAppAPI.Controllers
         [ProducesResponseType(404)]
         public IActionResult DeleteProfile(int educationId)
         {
-            var education = educationRepository.GetEducations().Where(e => e.Id == educationId).First();
+            var education = educationRepository.GetEducations().Where(e => e.Id == educationId).FirstOrDefault();
 
             if (education == null)
                 return NotFound();

@@ -40,11 +40,26 @@ namespace JobAdvertisementApp.Services
                 return false;
         }
 
-        public override async Task<IEnumerable<Offer>> GetAllFromIdAsync(string id)
+        public async Task<IEnumerable<Offer>> GetAllFromCompanyAsync(string id)
         {
             IEnumerable<Offer> result = new List<Offer>();
 
             HttpResponseMessage response = await httpClient.GetAsync(url + "/Company/" + id);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                result = JsonSerializer.Deserialize<List<Offer>>(content, jsonSerialzierOptions);
+            }
+
+            return result;
+        }
+
+        public async Task<IEnumerable<Offer>> GetAllFromUserAsync(string id)
+        {
+            IEnumerable<Offer> result = new List<Offer>();
+
+            HttpResponseMessage response = await httpClient.GetAsync(url + "/User/" + id);
 
             if (response.IsSuccessStatusCode)
             {

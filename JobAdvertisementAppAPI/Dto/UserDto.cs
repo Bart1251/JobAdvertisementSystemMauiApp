@@ -1,4 +1,6 @@
-﻿namespace JobAdvertisementAppAPI.Dto
+﻿using JobAdvertisementAppAPI.Models;
+
+namespace JobAdvertisementAppAPI.Dto
 {
     public class UserDto
     {

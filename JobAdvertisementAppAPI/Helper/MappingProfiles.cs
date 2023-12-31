@@ -19,8 +19,6 @@ namespace JobAdvertisementAppAPI.Helper
             CreateMap<EducationDto, Education>();
             CreateMap<JobExperience, JobExpirienceDto>();
             CreateMap<JobExpirienceDto, JobExperience>();
-            CreateMap<JobLevel, JobLevelDto>();
-            CreateMap<JobLevelDto, JobLevel>();
             CreateMap<JobType, JobTypeDto>();
             CreateMap<JobTypeDto, JobType>();
             CreateMap<Language, LanguageDto>();
