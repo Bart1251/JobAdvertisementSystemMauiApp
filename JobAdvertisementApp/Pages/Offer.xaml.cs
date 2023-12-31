@@ -143,14 +143,31 @@ public partial class Offer : ContentPage, IQueryAttributable
     {
         if (mapZoomLevel < 19)
             mapZoomLevel++;
-        Location.Source = await mapService.GetMapImageAsync(offer.Company.Location.Split(";").FirstOrDefault().Replace(",", ".") + "," + offer.Company.Location.Split(";").Last().Replace(",", "."), mapZoomLevel);
+        Location.Source = null;
+        var mapImageStream = await mapService.GetMapImageAsync(offer.Company.Location.Split(";").FirstOrDefault().Replace(",", ".") + "," + offer.Company.Location.Split(";").Last().Replace(",", "."), mapZoomLevel);
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            if (mapImageStream != null)
+            {
+                Location.Source = mapImageStream;
+            }
+        });
     }
 
     private async void ResizeMapSmaller(object sender, EventArgs e)
     {
         if (mapZoomLevel > 1)
             mapZoomLevel--;
-        Location.Source = await mapService.GetMapImageAsync(offer.Company.Location.Split(";").FirstOrDefault().Replace(",", ".") + "," + offer.Company.Location.Split(";").Last().Replace(",", "."), mapZoomLevel);
+        Location.Source = null;
+        var mapImageStream = await mapService.GetMapImageAsync(offer.Company.Location.Split(";").FirstOrDefault().Replace(",", ".") + "," + offer.Company.Location.Split(";").Last().Replace(",", "."), mapZoomLevel);
+        
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            if (mapImageStream != null)
+            {
+                Location.Source = mapImageStream;
+            }
+        });
     }
 
     private void PageSizeChanged(object sender, EventArgs e)
