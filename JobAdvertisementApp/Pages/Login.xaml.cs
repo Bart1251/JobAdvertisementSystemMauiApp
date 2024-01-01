@@ -36,6 +36,8 @@ public partial class Login : ContentPage
             return;
         }
         App.LoggedUser = user;
+        Email.Text = "";
+        Password.Text = "";
         await Shell.Current.GoToAsync("//MainPage");
     }
 

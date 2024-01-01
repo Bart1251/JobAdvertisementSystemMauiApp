@@ -56,6 +56,26 @@ public partial class AddJobExperience : ContentPage
 			}))
 		{
             await Shell.Current.GoToAsync("//Profile");
+			responsibilities.Clear();
+            foreach (var child in MainGrid.Children)
+            {
+                if (child is Entry entry)
+                    entry.Text = "";
+                if (child is DatePicker datePicker)
+                    datePicker.Date = DateTime.Now;
+				if(child is HorizontalStackLayout layout)
+				{
+                    foreach (var innerChild in layout.Children)
+                    {
+                        if (innerChild is Entry innerEntry)
+                            innerEntry.Text = "";
+                        if (innerChild is DatePicker innerDatePicker)
+                            innerDatePicker.Date = DateTime.Now;
+						if (innerChild is CheckBox innerCheckBox)
+							innerCheckBox.IsChecked = false;
+                    }
+                }
+            }
         }
 		else
 		{

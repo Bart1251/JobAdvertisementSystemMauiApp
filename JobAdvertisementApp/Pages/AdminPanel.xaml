@@ -13,17 +13,20 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
         <controls:NavBar x:Name="NavBar" Grid.Row="0"/>
+
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout>
-                <HorizontalStackLayout>
-                    <Label Text="Firmy" TextColor="#222222" FontSize="Large"  FontAttributes="Bold" Margin="10"/>
-                    <Button Text="+" TextColor="#EEEEEE" BackgroundColor="CadetBlue" WidthRequest="30" HeightRequest="30" Padding="5" Clicked="AddCompany"/>
+            <VerticalStackLayout Spacing="10">
+                <HorizontalStackLayout Spacing="10" Padding="10">
+                    <Label Text="Firmy" FontSize="Large" FontAttributes="Bold" TextColor="#333333"/>
+                    <Button Text="+" BackgroundColor="#4a90e2" TextColor="White" WidthRequest="30" HeightRequest="30" Padding="5" Clicked="AddCompany"/>
                 </HorizontalStackLayout>
-                <VerticalStackLayout x:Name="Companies">
+
+                <VerticalStackLayout x:Name="Companies" Spacing="10">
                     
                 </VerticalStackLayout>
             </VerticalStackLayout>

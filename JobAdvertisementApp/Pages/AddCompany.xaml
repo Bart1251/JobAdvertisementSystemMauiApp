@@ -32,7 +32,7 @@
                 <Entry Grid.Row="2" Placeholder="Nazwa" x:Name="Name" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="0, 0, 0, 10" TextColor="#CCCCCC" BackgroundColor="#222222"/>
                 <Entry Grid.Row="3" Placeholder="Adres" x:Name="Address" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="0, 0, 0, 10" TextColor="#CCCCCC" BackgroundColor="#222222"/>
                 <Entry Grid.Row="4" Placeholder="Opis" x:Name="Description" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="0, 0, 0, 10" TextColor="#CCCCCC" BackgroundColor="#222222"/>
-                <Button Grid.Row="5" Text="Dodaj logo" BackgroundColor="#222222" FontSize="Small" TextColor="#CCCCCC" Clicked="AddLogo"/>
+                <Button Grid.Row="5" x:Name="LogoButton" Text="Dodaj logo" BackgroundColor="#222222" FontSize="Small" TextColor="#CCCCCC" Clicked="AddLogo"/>
 
                 <Button Grid.Row="6" Text="Dodaj" TextColor="#222222" FontSize="Small" BorderColor="#222222" Clicked="Submit"/>
             </Grid>

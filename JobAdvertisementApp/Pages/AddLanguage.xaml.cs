@@ -44,6 +44,11 @@ public partial class AddLanguage : ContentPage
             ((List<Language>)await languageApiService.GetAllAsync())
             .Single(e => e.Name == LanguageName.SelectedItem.ToString() && e.Level == (LanguageLevel)LanguageLevel.SelectedItem).Id.ToString()))
         {
+            foreach (var child in MainGrid.Children)
+            {
+                if (child is Picker picker)
+                    picker.SelectedIndex = 0;
+            }
             await Shell.Current.GoToAsync("//Profile");
         }
         else

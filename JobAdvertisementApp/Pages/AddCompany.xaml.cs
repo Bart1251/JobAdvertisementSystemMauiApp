@@ -46,6 +46,14 @@ public partial class AddCompany : ContentPage
 			Description = Description.Text
 		});
 		await companyApiService.UploadImage((await companyApiService.GetAllAsync()).Single(e => e.Name == Name.Text && e.Adress == Address.Text && e.Description == Description.Text).Id.ToString(), logoBytes);
+		LogoButton.Text = "Dodaj logo";
+		foreach(var child in MainGrid.Children)
+		{
+			if(child is Entry entry)
+			{
+				entry.Text = "";
+			}
+		}
 		await Shell.Current.GoToAsync("//AdminPanel");
     }
 }

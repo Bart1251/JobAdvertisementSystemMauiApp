@@ -29,6 +29,13 @@ public partial class AddCourse : ContentPage
                 CourseEnd = CourseEnd.Date
             }))
         {
+            foreach (var child in MainGrid.Children)
+            {
+                if (child is Entry entry)
+                    entry.Text = "";
+                if (child is DatePicker datePicker)
+                    datePicker.Date = DateTime.Now;
+            }
             await Shell.Current.GoToAsync("//Profile");
         }
         else

@@ -2,27 +2,31 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="JobAdvertisementApp.Controls.CompanyView">
+
     <Frame BackgroundColor="#FFFFFF" CornerRadius="20" Margin="10" BorderColor="Transparent">
         <VerticalStackLayout>
-            <Grid x:Name="MainInfoGrid">
+            <Grid x:Name="MainInfoGrid" Padding="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Text="{Binding Name, StringFormat='Nazwa: {0}'}" LineBreakMode="WordWrap" TextColor="#222222" FontSize="Medium" FontAttributes="Bold"/>
-                <Label Grid.Column="1" Text="{Binding Adress, StringFormat='Adres: {0}'}" LineBreakMode="WordWrap" TextColor="#222222" FontSize="Medium" FontAttributes="Bold"/>
-                <Button Grid.Column="3" Text="-" CommandParameter="{Binding .}" TextColor="#EEEEEE" BackgroundColor="CadetBlue" WidthRequest="30" HeightRequest="30" Padding="5" x:Name="Delete"/>
+
+                <Label Grid.Column="0" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold" TextColor="#333333"/>
+                <Label Grid.Column="1" Text="{Binding Adress}" FontSize="Medium" FontAttributes="Bold" TextColor="#333333"/>
+                <Button Grid.Column="2" Text="-" CommandParameter="{Binding .}" BackgroundColor="#e74c3c" TextColor="White" WidthRequest="30" HeightRequest="30" Padding="5" x:Name="Delete"/>
             </Grid>
-            <HorizontalStackLayout>
-                <Label Text="Ofery firmy:" TextColor="#222222" FontSize="Medium" FontAttributes="Bold"/>
-                <Button Text="+" TextColor="#EEEEEE" BackgroundColor="CadetBlue" WidthRequest="30" HeightRequest="30" Padding="5" x:Name="AddOffer" CommandParameter="{Binding .}"/>
+
+            <HorizontalStackLayout Spacing="10" Padding="10">
+                <Label Text="Oferty firmy:" FontSize="Medium" FontAttributes="Bold" TextColor="#333333"/>
+                <Button Text="+" BackgroundColor="#4a90e2" TextColor="White" WidthRequest="30" HeightRequest="30" Padding="5" CommandParameter="{Binding .}" x:Name="AddOffer"/>
             </HorizontalStackLayout>
-            <ScrollView MaximumHeightRequest="300">
+
+            <ScrollView MaximumHeightRequest="300" Padding="10">
                 <VerticalStackLayout x:Name="Offers">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid Padding="0, 10">
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition/>
@@ -35,7 +39,7 @@
                                     <Label Text="{Binding Position, StringFormat='Stanowisko: {0}'}" TextColor="#222222" FontSize="Small"/>
                                     <Label Text="{Binding Expires, StringFormat='Wygasa: {0:d}'}" TextColor="#222222" FontSize="Small"/>
                                 </VerticalStackLayout>
-                                <Button Grid.Column="1" Text="-" CommandParameter="{Binding .}" TextColor="#EEEEEE" BackgroundColor="CadetBlue" WidthRequest="30" HeightRequest="30" Padding="5" Clicked="DeleteOffer"/>
+                                <Button Grid.Column="1" Text="-" CommandParameter="{Binding .}" TextColor="#EEEEEE" BackgroundColor="#e74c3c" WidthRequest="30" HeightRequest="30" Padding="5" Clicked="DeleteOffer"/>
                                 <Line Grid.Row="1" Grid.ColumnSpan="2" X1="0" X2="1" Aspect="Uniform" StrokeThickness="1" BackgroundColor="#222222"/>
                             </Grid>
                         </DataTemplate>

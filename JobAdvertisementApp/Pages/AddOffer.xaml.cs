@@ -78,6 +78,26 @@ public partial class AddOffer : ContentPage, IQueryAttributable
             jobTypes.Single(e => e.Type == JobType.SelectedItem).Id.ToString(),
             workingShifts.Single(e => e.Shift == WorkingShift.SelectedItem).Id.ToString(),
             categories.Single(e => e.Name == Category.SelectedItem).Id.ToString());
+        responsibilities.Clear();
+        benefits.Clear();
+        requirements.Clear();
+        foreach (var child in MainGrid.Children)
+        {
+            if (child is Entry entry)
+                entry.Text = "";
+            if (child is DatePicker datePicker)
+                datePicker.Date = DateTime.Now;
+            if (child is HorizontalStackLayout layout)
+            {
+                foreach (var innerChild in layout.Children)
+                {
+                    if (innerChild is Entry innerEntry)
+                        innerEntry.Text = "";
+                    if (innerChild is DatePicker innerDatePicker)
+                        innerDatePicker.Date = DateTime.Now;
+                }
+            }
+        }
         await Shell.Current.GoToAsync("//AdminPanel");
     }
 

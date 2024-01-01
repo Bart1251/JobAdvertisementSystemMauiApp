@@ -33,6 +33,15 @@ public partial class AddEducation : ContentPage
             }))
         {
             await Shell.Current.GoToAsync("//Profile");
+            foreach (var child in MainGrid.Children)
+            {
+                if (child is Entry entry)
+                    entry.Text = "";
+                if (child is DatePicker datePicker)
+                    datePicker.Date = DateTime.Now;
+                if (child is Picker picker)
+                    picker.SelectedIndex = 0;
+            }
         }
         else
         {

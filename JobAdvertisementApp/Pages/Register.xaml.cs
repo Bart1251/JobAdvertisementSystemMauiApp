@@ -33,7 +33,14 @@ public partial class Register : ContentPage
             if (await userApiService.AddAsync(user))
 			{
 				App.LoggedUser = user;
-				await Shell.Current.GoToAsync("//MainPage");
+				FirstName.Text = "";
+				SecondName.Text = "";
+				DateOfBirth.Date = DateTime.Now;
+				PhoneNumber.Text = "";
+				Email.Text = "";
+				Password.Text = "";
+				Password2.Text = "";
+                await Shell.Current.GoToAsync("//MainPage");
 			}
 			else
 			{
